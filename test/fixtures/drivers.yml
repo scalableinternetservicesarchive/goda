@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departure: MyString
+  destination: MyString
+  price: 9.99
+  depart_time: MyString
+  estimated_arrival_time: MyString
+  description: MyText
+  car_type: MyString
+  passenger_num: 1
+  contact_info: MyString
+
+two:
+  departure: MyString
+  destination: MyString
+  price: 9.99
+  depart_time: MyString
+  estimated_arrival_time: MyString
+  description: MyText
+  car_type: MyString
+  passenger_num: 1
+  contact_info: MyString

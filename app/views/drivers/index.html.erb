@@ -1,0 +1,27 @@
+<h1>Listing Drivers</h1>
+
+<table>
+<% @drivers.each do |driver| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <p>Departure: <%= driver.departure %></p>
+        <dt>Destination: <%= driver.destination %></dt>
+        <dt>Price: <%= driver.price %></dt>
+        <dt>Depart_time: <%= driver.depart_time %></dt>
+        <dt>Estimated_arrival_time: <%= driver.estimated_arrival_time %></dt>
+        <dt>Car_type: <%= driver.car_type %></dt>
+        <dt>Passenger_num: <%= driver.passenger_num %></dt>
+        <dt>Contact_info: <%= driver.contact_info %></dt>
+        <dt>Description: <%= truncate(strip_tags(driver.description), length: 80) %></dt>
+      </dl>
+      <%= link_to 'Show', driver %><br/>
+      <%= link_to 'Edit', edit_driver_path(driver) %><br/>
+      <%= link_to 'Destroy', driver, method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br />
+<%= link_to 'New driver', new_driver_path %>
