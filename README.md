@@ -4,8 +4,7 @@ Description: This is a carpool application which allows passengers to choose a d
 
 Team Member:Qinghao Wu; Yi Yang; Zhiang Li; Xin Liu; Kai Yan
 
-
-Photos:
+Team member photos:
 Qinghao Wu
 ![alt tag](https://cloud.githubusercontent.com/assets/8999618/10401856/9111f406-6e76-11e5-99c2-998a99d03628.JPG)
 
