@@ -1,0 +1,55 @@
+<%= form_for(@driver) do |f| %>
+  <% if @driver.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@driver.errors.count, "error") %> prohibited this driver from being saved:</h2>
+
+      <ul>
+      <% @driver.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :departure %><br>
+    <%= f.text_field :departure %>
+  </div>
+  <div class="field">
+    <%= f.label :destination %><br>
+    <%= f.text_field :destination %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :depart_time %><br>
+    <%= f.text_field :depart_time %>
+  </div>
+  <div class="field">
+    <%= f.label :estimated_arrival_time %><br>
+    <%= f.text_field :estimated_arrival_time %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, rows:6 %>
+  </div>
+  <div class="field">
+    <%= f.label :car_type %><br>
+    <%= f.text_field :car_type %>
+  </div>
+  <div class="field">
+    <%= f.label :passenger_num %><br>
+    <%= f.text_field :passenger_num %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_info %><br>
+    <%= f.text_field :contact_info %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+ 
