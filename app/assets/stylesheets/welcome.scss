@@ -1,0 +1,37 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.driver a{
+	margin-bottom:500px;
+	text-decoration: none;
+}
+.hitcher a{
+	text-decoration: none;
+}
+
+.driver a:hover{
+	color:red;
+}
+
+.driver a:link{
+	color:green;
+}
+.driver a:visited{
+	color: green;
+}
+.driver a:active{
+	color:yellow;
+} 
+
+.hitcher a:hover{
+	color:red;
+}
+.hitcher a:link{
+	color:green;
+}
+.hitcher a:visited{
+	color:green;
+}
+.hitcher a:active{
+	color:yellow;
+}	

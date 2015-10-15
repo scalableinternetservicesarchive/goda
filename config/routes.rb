@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+ 
+  get 'welcome/index'
+  root 'welcome#index'
+
   get 'hitchers/index'
 
   get 'drivers/index'
@@ -7,9 +11,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'drivers#index'
-  resources :drivers
-  resources :hitchers
+  # root 'drivers#index'
+  resource :welcome 
+     resources :drivers
+     resources :hitchers
+  
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
