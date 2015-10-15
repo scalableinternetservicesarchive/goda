@@ -12,6 +12,7 @@ class HitchersController < ApplicationController
   end
 
   def show
+     @hitcher = Hitcher.find(params[:id])
   end
 
   private

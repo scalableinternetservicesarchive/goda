@@ -1,3 +1,39 @@
-<html>
-<p> successfully saved </p>
-</html>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Departure:</strong>
+  <%= @hitcher.departure %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @hitcher.destination %>
+</p>
+
+<p>
+  <strong>Depart time:</strong>
+  <%= @hitcher.depart_time %>
+</p>
+
+<p>
+  <strong>Arrival time</strong>
+  <%= @hitcher.arrival_time %>
+</p>
+
+<p>
+  <strong>Passenger num:</strong>
+  <%= @hitcher.num %>
+</p>
+
+<p>
+  <strong>Contact info:</strong>
+  <%= @hitcher.contact_info %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @hitcher.description %>
+</p>
+
+<%= link_to 'Edit', edit_hitcher_path(@hitcher) %> |
+<%= link_to 'Back', hitchers_path %>
