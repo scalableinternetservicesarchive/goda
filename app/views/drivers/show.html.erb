@@ -1,3 +1,50 @@
-<html>
-<p> successfully saved </p>
-</html>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Departure:</strong>
+  <%= @driver.departure %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @driver.destination %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @driver.price %>
+</p>
+
+<p>
+  <strong>Depart time:</strong>
+  <%= @driver.depart_time %>
+</p>
+
+<p>
+  <strong>Estimated arrival time</strong>
+  <%= @driver.estimated_arrival_time %>
+</p>
+
+<p>
+  <strong>Car type:</strong>
+  <%= @driver.car_type %>
+</p>
+
+
+<p>
+  <strong>Passenger num:</strong>
+  <%= @driver.passenger_num %>
+</p>
+
+<p>
+  <strong>Contact info:</strong>
+  <%= @driver.contact_info %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @driver.description %>
+</p>
+
+<%= link_to 'Edit', edit_driver_path(@driver) %> |
+<%= link_to 'Back', drivers_path %>
