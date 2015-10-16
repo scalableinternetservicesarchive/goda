@@ -20,3 +20,5 @@ Xin Liu
 
 Kai Yan
 ![alt tag](https://cloud.githubusercontent.com/assets/9508990/10402194/b504ef92-6e78-11e5-8040-f2b32c272f8f.jpg)
+
+Here's the [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1446078) for project.
