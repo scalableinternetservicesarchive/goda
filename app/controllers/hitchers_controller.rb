@@ -16,6 +16,20 @@ class HitchersController < ApplicationController
         render "new"
     end
   end
+       
+    def edit
+        @hitcher = Hitcher.find(params[:id])
+    end
+ 
+    def update
+        @hitcher = Hitcher.find(params[:id])
+        if @hitcher.update(hitcher_params)
+            redirect_to current_user
+        else
+            render "edit"
+        end    
+    end
+
 
   def show
      @hitcher = Hitcher.find(params[:id])
