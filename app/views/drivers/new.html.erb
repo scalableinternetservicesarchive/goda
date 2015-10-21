@@ -1,5 +1,17 @@
 <h1>New Driver Post</h1>
 
+<% if @driver.errors.any? %>
+   <div id="error_explanation">
+     <div class="alert alert-danger">
+	The form contains <%=pluralize(@driver.errors.count, "error") %>.
+     </div> 
+     <ul>
+     <% @driver.errors.full_messages.each do |msg| %>
+	<li><%= msg%></li>
+     <% end %>
+     </ul>
+   </div>
+<% end %>
 <%= render 'form' %>
 
 <%= link_to 'Back', drivers_path %>
