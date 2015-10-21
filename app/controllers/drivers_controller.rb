@@ -1,22 +1,27 @@
 class DriversController < ApplicationController
+  before_action :logged_in_user, only: [:create]
   def index
-     @drivers = Driver.all
+      @drivers = Driver.all
+    # @drivers = current_user.drivers
   end
   def new
      @driver = Driver.new
   end
   def create
-     @driver = Driver.new(driver_params)
     
-    if  @driver.save
-         redirect_to @driver
+    @driver = current_user.drivers.build(driver_params)
+    
+    if  driver.save
+        flash[:success] = "Driver post created!"
+        redirect_to root_url
     else
         render "new"
     end    	
   end
 
   def show
-    @driver = Driver.find(params[:id]) 
+     #@drivers = current_user.drivers
+     @driver = Driver.find(params[:id]) 
   end
 
   private 

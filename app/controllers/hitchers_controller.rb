@@ -5,10 +5,16 @@ class HitchersController < ApplicationController
   def new
      @hitcher = Hitcher.new
   end
+
   def create
-     @hitcher = Hitcher.new(hitcher_params)
-     @hitcher.save
-     redirect_to @hitcher
+    @hitcher = current_user.hitchers.build(hitcher_params)
+
+    if @hitcher.save
+        flash[:success] = "Hitcher post created!"
+        redirect_to root_url
+    else
+        render "new"
+    end
   end
 
   def show
