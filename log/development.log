@@ -9920,3 +9920,294 @@ Processing by UsersController#show as HTML
   Rendered users/show.html.erb within layouts/application (11.0ms)
   [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
 Completed 200 OK in 126ms (Views: 120.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2015-10-21 03:00:10 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.9ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 273ms (Views: 253.0ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/logout" for 10.0.2.2 at 2015-10-21 03:00:33 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"YG8qHm+XBynb8lC1zilHQ6hvfQTHe4EA/f1MnqyUVEV4pKnKut1Em2D7ab8/ESn36/aIw8BN37cC3NjoP4xn/Q=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2015-10-21 03:00:33 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 171ms (Views: 169.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 10.0.2.2 at 2015-10-21 03:00:35 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as HTML
+  Rendered sessions/_form.html.erb (36.5ms)
+  Rendered sessions/new.html.erb within layouts/application (47.4ms)
+Completed 200 OK in 138ms (Views: 137.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 10.0.2.2 at 2015-10-21 03:00:45 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"VtUbGIWqIdKgAGwaZejJ3NJTwJNBGbQSnRC7nq0+DmROHpjMUOBiYBsJVRCU0Kdokco1VEYv6qViMS/oPiY93A==", "session"=>{"name"=>"qqqqq", "password"=>"[FILTERED]"}, "commit"=>"Save Session"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "qqqqq"]]
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 90ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:00:45 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mDriver Load (0.2ms)[0m  [1mSELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?[0m  [["user_id", 4]]
+  [1m[35mHitcher Load (0.3ms)[0m  SELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (34.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 117ms (Views: 83.3ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/hitchers/new" for 10.0.2.2 at 2015-10-21 03:00:58 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#new as HTML
+  Rendered hitchers/_form.html.erb (13.2ms)
+  Rendered hitchers/new.html.erb within layouts/application (17.7ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 110ms (Views: 99.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/hitchers" for 10.0.2.2 at 2015-10-21 03:01:21 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ULCk43Yetc067idrbYSMfrYMk/PPh63+Q31hbMfjvmFIeyc3o1T2f4HnHmGcvOLK9ZVmNMix80m8XPUaVPuN2Q==", "hitcher"=>{"departure"=>"qqq", "destination"=>"qqqq", "depart_time"=>"qqqqqqqqq", "arrival_time"=>"qqqqqqq", "description"=>"qqqqqq", "num"=>"111111", "contact_info"=>"1111111"}, "commit"=>"Create Hitcher"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "hitchers" ("departure", "destination", "depart_time", "arrival_time", "description", "num", "contact_info", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["departure", "qqq"], ["destination", "qqqq"], ["depart_time", "qqqqqqqqq"], ["arrival_time", "qqqqqqq"], ["description", "qqqqqq"], ["num", 111111], ["contact_info", "1111111"], ["user_id", 4], ["created_at", "2015-10-21 07:01:21.845706"], ["updated_at", "2015-10-21 07:01:21.845706"]]
+  [1m[35m (7.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 26ms (ActiveRecord: 8.3ms)
+
+
+Started GET "/" for 10.0.2.2 at 2015-10-21 03:01:21 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 53ms (Views: 52.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/hitchers" for 10.0.2.2 at 2015-10-21 03:01:25 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#index as HTML
+  [1m[35mHitcher Load (0.6ms)[0m  SELECT "hitchers".* FROM "hitchers"
+  Rendered hitchers/index.html.erb within layouts/application (12.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 131ms (Views: 127.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:01:50 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mDriver Load (0.2ms)[0m  [1mSELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?[0m  [["user_id", 4]]
+  [1m[35mHitcher Load (0.1ms)[0m  SELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (20.1ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 86ms (Views: 78.1ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/hitchers/5" for 10.0.2.2 at 2015-10-21 03:02:00 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"XC0dwHhsXsHNBuCHNVPmKjisb9cUPH5NuXhb3USjWDFE5p4UrSYdc3YP2Y3Ea4ieezWaEBMKIPpGWc+r17triQ==", "id"=>"5"}
+  [1m[35mHitcher Load (0.3ms)[0m  SELECT  "hitchers".* FROM "hitchers" WHERE "hitchers"."id" = ? LIMIT 1  [["id", 5]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  DELETE FROM "hitchers" WHERE "hitchers"."id" = ?  [["id", 5]]
+  [1m[36m (11.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 38ms (ActiveRecord: 12.4ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:02:00 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mDriver Load (0.2ms)[0m  SELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?  [["user_id", 4]]
+  [1m[36mHitcher Load (0.2ms)[0m  [1mSELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?[0m  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (10.4ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 79ms (Views: 74.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/hitchers/new" for 10.0.2.2 at 2015-10-21 03:03:10 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HitchersController#new as HTML
+  Rendered hitchers/_form.html.erb (15.6ms)
+  Rendered hitchers/new.html.erb within layouts/application (20.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 250ms (Views: 220.8ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/hitchers" for 10.0.2.2 at 2015-10-21 03:03:29 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+TdlFUi8Pn9Kc/7ytVgO1X1MGlmbtzpPvgHwqM1J2/nh/ObBnfZ9zfF6x/hEYGBhPtXvnpyBZPhBIGTeXlHoQQ==", "hitcher"=>{"departure"=>"wwwww", "destination"=>"w", "depart_time"=>"w", "arrival_time"=>"ww", "description"=>"e", "num"=>"e", "contact_info"=>"e"}, "commit"=>"Create Hitcher"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "hitchers" ("departure", "destination", "depart_time", "arrival_time", "description", "num", "contact_info", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["departure", "wwwww"], ["destination", "w"], ["depart_time", "w"], ["arrival_time", "ww"], ["description", "e"], ["num", 0], ["contact_info", "e"], ["user_id", 4], ["created_at", "2015-10-21 07:03:30.006142"], ["updated_at", "2015-10-21 07:03:30.006142"]]
+  [1m[35m (6.4ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 40ms (ActiveRecord: 7.3ms)
+
+
+Started GET "/" for 10.0.2.2 at 2015-10-21 03:03:30 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 111ms (Views: 110.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/login" for 10.0.2.2 at 2015-10-21 03:04:34 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  Rendered sessions/_form.html.erb (10.1ms)
+  Rendered sessions/new.html.erb within layouts/application (14.3ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 252ms (Views: 234.8ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/logout" for 10.0.2.2 at 2015-10-21 03:04:38 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"eAbK1ydD9dNqRPGlGtfKHVVSpSX+3udoZRlYg400AJBgzUkD8gm2YdFNyK/r76SpFstQ4vnoud+aOMz1HiwzKA=="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 10.0.2.2 at 2015-10-21 03:04:38 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 91ms (Views: 90.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 10.0.2.2 at 2015-10-21 03:04:39 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#new as HTML
+  Rendered sessions/_form.html.erb (4.4ms)
+  Rendered sessions/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 126ms (Views: 124.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 10.0.2.2 at 2015-10-21 03:04:48 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nAajSHGHfXDefKx5HKuYJ5JpoGdYua0X7F5i0yjIYHSEzSCcpM0+wmV1lXPtk/aT0fBVoF+P86ATf/alu9BTzA==", "session"=>{"name"=>"qqqqq", "password"=>"[FILTERED]"}, "commit"=>"Save Session"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1[0m  [["name", "qqqqq"]]
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 86ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:04:48 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mDriver Load (0.3ms)[0m  [1mSELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?[0m  [["user_id", 4]]
+  [1m[35mHitcher Load (0.2ms)[0m  SELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (40.7ms)
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 130ms (Views: 90.7ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/login" for 10.0.2.2 at 2015-10-21 03:04:49 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nAajSHGHfXDefKx5HKuYJ5JpoGdYua0X7F5i0yjIYHSEzSCcpM0+wmV1lXPtk/aT0fBVoF+P86ATf/alu9BTzA==", "session"=>{"name"=>"qqqqq", "password"=>"[FILTERED]"}, "commit"=>"Save Session"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."name" = ? LIMIT 1  [["name", "qqqqq"]]
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 101ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:04:49 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mDriver Load (0.2ms)[0m  SELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?  [["user_id", 4]]
+  [1m[36mHitcher Load (0.1ms)[0m  [1mSELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?[0m  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (7.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 59ms (Views: 55.4ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/hitchers/6" for 10.0.2.2 at 2015-10-21 03:04:55 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"SunuzMLMFxVpplIko49IBAHRJSbepA85tspMvrggSDtSIm0YF4ZUp9Kvay5StyawQkjQ4dmSUY5J69jIKzh7gw==", "id"=>"6"}
+  [1m[36mHitcher Load (0.3ms)[0m  [1mSELECT  "hitchers".* FROM "hitchers" WHERE "hitchers"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mDELETE FROM "hitchers" WHERE "hitchers"."id" = ?[0m  [["id", 6]]
+  [1m[35m (9.0ms)[0m  commit transaction
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 28ms (ActiveRecord: 10.5ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:04:55 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mDriver Load (0.1ms)[0m  [1mSELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?[0m  [["user_id", 4]]
+  [1m[35mHitcher Load (0.2ms)[0m  SELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (10.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+Completed 200 OK in 91ms (Views: 86.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/hitchers/new" for 10.0.2.2 at 2015-10-21 03:04:59 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#new as HTML
+  Rendered hitchers/_form.html.erb (12.1ms)
+  Rendered hitchers/new.html.erb within layouts/application (15.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 89ms (Views: 87.3ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/hitchers" for 10.0.2.2 at 2015-10-21 03:05:17 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HitchersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RlEW7dzIfvczuhLf0se3h4EFCtuRelJ1r/1l1uQ90UdempU5CYI9RYizK9Uj/9kzwpz/HJZMDMJQ3PGgdyXi/w==", "hitcher"=>{"departure"=>"wwwww", "destination"=>"rrr", "depart_time"=>"tt", "arrival_time"=>"t", "description"=>"t", "num"=>"t", "contact_info"=>"t"}, "commit"=>"Create Hitcher"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "hitchers" ("departure", "destination", "depart_time", "arrival_time", "description", "num", "contact_info", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["departure", "wwwww"], ["destination", "rrr"], ["depart_time", "tt"], ["arrival_time", "t"], ["description", "t"], ["num", 0], ["contact_info", "t"], ["user_id", 4], ["created_at", "2015-10-21 07:05:17.540345"], ["updated_at", "2015-10-21 07:05:17.540345"]]
+  [1m[35m (10.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/4
+Completed 302 Found in 33ms (ActiveRecord: 11.7ms)
+
+
+Started GET "/users/4" for 10.0.2.2 at 2015-10-21 03:05:17 -0400
+Cannot render console from 10.0.2.2! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 4]]
+  [1m[35mDriver Load (0.2ms)[0m  SELECT "drivers".* FROM "drivers" WHERE "drivers"."user_id" = ?  [["user_id", 4]]
+  [1m[36mHitcher Load (0.1ms)[0m  [1mSELECT "hitchers".* FROM "hitchers" WHERE "hitchers"."user_id" = ?[0m  [["user_id", 4]]
+  Rendered users/show.html.erb within layouts/application (13.1ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+Completed 200 OK in 79ms (Views: 74.2ms | ActiveRecord: 0.5ms)

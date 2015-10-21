@@ -11,7 +11,7 @@ class HitchersController < ApplicationController
 
     if @hitcher.save
         flash[:success] = "Hitcher post created!"
-        redirect_to root_url
+        redirect_to current_user
     else
         render "new"
     end
