@@ -8,6 +8,15 @@
 </head>
 <body class = '<%= controller.controller_name %>'>
 
+<p class="navbar-text pull-right">
+<% if session[:user_id] %>
+  Logged in as <strong><%= current_user.name %></strong>.
+  <%= link_to "Logout", logout_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "Sign up", signup_path, :class => 'navbar-link'  %> |
+  <%= link_to "Login", login_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
 <%= yield %>
 
 </body>
