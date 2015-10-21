@@ -7,13 +7,20 @@ class DriversController < ApplicationController
   def new
      @driver = Driver.new
   end
+
+    def destroy
+        @driver = Driver.find(params[:id])
+        @driver.destroy
+        redirect_to current_user
+    end 
+
   def create
     
     @driver = current_user.drivers.build(driver_params)
     
-    if  driver.save
+    if  @driver.save
         flash[:success] = "Driver post created!"
-        redirect_to root_url
+        redirect_to current_user
     else
         render "new"
     end    	
