@@ -21,6 +21,12 @@ class HitchersController < ApplicationController
      @hitcher = Hitcher.find(params[:id])
   end
 
+  def destroy
+     @hitcher = Hitcher.find(params[:id])
+     @hitcher.destroy
+     redirect_to current_user
+  end
+
   private
   def hitcher_params
     params.require(:hitcher).permit(:departure, :destination, :depart_time, :arrival_time, :description, :num, :contact_info)
