@@ -1,5 +1,16 @@
 <h1>Sign up here</h1>
-
+<% if @user.errors.any? %>
+ <div id="error_explanation">
+  <div class="alert alert-danger">
+   The form contains <%= pluralize(@user.errors.count, "errors") %>.
+  </div>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+ </div>
+<% end %> 
 <%= render 'form' %>
 
 <%= link_to 'Back', root_url %>
