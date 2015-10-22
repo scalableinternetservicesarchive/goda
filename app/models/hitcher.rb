@@ -1,4 +1,4 @@
 class Hitcher < ActiveRecord::Base
-    validates :departure, :destination, :depart_time, presence: true
+    validates :departure, :destination, :depart_time, :arrival_time, :contact_info, presence: true
     belongs_to :user
 end
