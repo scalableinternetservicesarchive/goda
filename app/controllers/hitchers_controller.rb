@@ -1,4 +1,5 @@
 class HitchersController < ApplicationController
+  before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
      @hitchers = Hitcher.all
   end
@@ -19,6 +20,10 @@ class HitchersController < ApplicationController
        
     def edit
         @hitcher = Hitcher.find(params[:id])
+   	if current_user != @hitcher.user	
+		flash[:notice]="Wrong User!"
+		redirect_to root_url
+	end
     end
  
     def update
@@ -37,8 +42,13 @@ class HitchersController < ApplicationController
 
   def destroy
      @hitcher = Hitcher.find(params[:id])
-     @hitcher.destroy
-     redirect_to current_user
+     if current_user == @hitcher.user
+     	@hitcher.destroy
+     	redirect_to current_user
+     else
+	flash[:notice]="Wrong User!"
+	redirect_to root_url
+     end
   end
 
   private
