@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GoDa</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<!-- START_HIGHLIGHT -->
+  <title>Pragprog Books Online Store</title>
+<!-- END_HIGHLIGHT -->
+  <!-- <label id="code.slt"/> --><%= stylesheet_link_tag    "application", media: "all",
+    "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %><!-- <label id="code.jlt"/> -->
+  <%= csrf_meta_tags %><!-- <label id="code.csrf"/> -->
 </head>
-<body class = '<%= controller.controller_name %>'>
-
-<p class="navbar-text pull-right">
-<% if session[:user_id] %>
-  Logged in as <strong><%= current_user.name %></strong>.
-  <%= link_to "Logout", logout_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", signup_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", login_path, :class => 'navbar-link'  %>
-<% end %>
-</p>
-<%= yield %>
-
+<!-- END:head -->
+<body class="<%= controller.controller_name %>">
+<!-- START_HIGHLIGHT -->
+  <div id="banner">
+    <%= @page_title || "Welcome To GoDa" %><!-- <label id="code.depot.e.title"/> -->
+  </div>
+<!--
+  <div id="columns">
+    <div id="side">
+      <ul>
+        <li><a href="http://www....">Home</a></li><li><a href = "">Drivers</a></li>
+      </ul>
+    </div>
+-->
+    <div id="main">
+<!-- END_HIGHLIGHT -->
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <%= yield %><!-- <label id="code.depot.e.include"/> -->
+      <p class="navbar-text pull-right">
+      <% if logged_in? %>
+        Logged in as <strong><%= current_user.name %></strong>.
+        <%= link_to "Logout", logout_path, method: :delete, :class => 'navbar-link'  %>
+      <% else %>
+        <%= link_to "Sign up", signup_path, :class => 'navbar-link'  %> |
+        <%= link_to "Login", login_path, :class => 'navbar-link'  %>
+      <% end %>
+<!-- START_HIGHLIGHT -->
+    </div>
+  </div>
+<!-- END_HIGHLIGHT -->
 </body>
-</html>

@@ -1,18 +1,7 @@
 <% if flash[:notice] %>
    <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-<h1 class="title" style="color:blue;text-align:center;">Welcome To GoDa!!</h1>
-
-<div id="columns">
-    <div id="side">
       <ul>
         <li><p class="driver" style="color:#00FF00;font-size:30px;display:inline;margin-left:30px;"><%= link_to "Drivers", drivers_url %></p></li>
         <li><p class="hitcher" style="font-size:30px;display:inline;margin-left:30px;"><%= link_to "Hitchers", hitchers_url %></p></li>
       </ul>
-    </div>
-    <div id="main">
-<!-- END_HIGHLIGHT -->
-    <%= yield %><!-- <label id="code.depot.e.include"/> -->
-<!-- START_HIGHLIGHT -->
-    </div>
-  </div>
