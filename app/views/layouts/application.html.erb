@@ -11,10 +11,13 @@
 </head>
 <!-- END:head -->
 <body class="<%= controller.controller_name %>">
+
 <!-- START_HIGHLIGHT -->
   <div id="banner">
-    <%= @page_title || "Welcome To GoDa" %><!-- <label id="code.depot.e.title"/> -->
+    <%= link_to  "Welcome To GoDa", root_url %><!-- <label id="code.depot.e.title"/> -->
   </div>
+
+<%= yield %>
 <!--
   <div id="columns">
     <div id="side">
@@ -25,14 +28,6 @@
 -->
     <div id="main">
 <!-- END_HIGHLIGHT -->
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-      <%= yield %><!-- <label id="code.depot.e.include"/> -->
-      <p class="navbar-text pull-right">
       <% if logged_in? %>
         Logged in as <strong><%= current_user.name %></strong>.
         <%= link_to "Logout", logout_path, method: :delete, :class => 'navbar-link'  %>
