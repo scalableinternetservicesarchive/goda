@@ -10,6 +10,7 @@
         <dt>Destination: <%= driver.destination %></dt>
         <dt>Price: <%= driver.price %></dt>
         <dt>Depart_time: <%= driver.depart_time %></dt>
+	<dt><%= button_to 'Book a Ride', rides_path(driver_id: driver) %></dt>
 <!--        <dt>Estimated_arrival_time: <%= driver.estimated_arrival_time %></dt>
         <dt>Car_type: <%= driver.car_type %></dt>
         <dt>Passenger_num: <%= driver.passenger_num %></dt>

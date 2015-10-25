@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Rides</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Driver</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rides.each do |ride| %>
+      <tr>
+        <td><%= ride.driver_id %></td>
+        <td><%= ride.user_id %></td>
+        <td><%= link_to 'Show', ride %></td>
+        <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
+        <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ride', new_ride_path %>

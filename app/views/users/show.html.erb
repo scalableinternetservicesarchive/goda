@@ -58,4 +58,9 @@
   </tr>
 <% end %>
 </table>
-
+<h1>Listing Your Rides</h1>
+<ul>
+   <% @user.rides.each do |ride| %>
+	<li><%= ride.quantity %> &times;<%= ride.driver.destination %></li>
+   <% end %>
+</ul>

@@ -52,7 +52,8 @@ class DriversController < ApplicationController
 
   def show
      #@drivers = current_user.drivers
-     @driver = Driver.find(params[:id]) 
+     @driver = Driver.find(params[:id])
+     @ride = Ride.find_by_driver_id(@driver_id) 
   end
 
   private 
