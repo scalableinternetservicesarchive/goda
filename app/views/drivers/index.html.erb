@@ -1,4 +1,7 @@
 <% provide(:title, "Drivers") %>
+<p class="notice"><% if notice %>
+<%= notice %>
+<% end %></p>
 <h1>Listing Drivers</h1>
 
 <table>
@@ -6,10 +9,13 @@
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
       <dl>
+	<dt>User: <%= driver.user.name %></dt>
         <dt>Departure: <%= driver.departure %></dt>
         <dt>Destination: <%= driver.destination %></dt>
         <dt>Price: <%= driver.price %></dt>
         <dt>Depart_time: <%= driver.depart_time %></dt>
+	
+        <dt>available/total space: <%= driver.left %>/<%= driver.passenger_num%></dt>
 	<dt><%= button_to 'Book a Ride', rides_path(driver_id: driver) %></dt>
 <!--        <dt>Estimated_arrival_time: <%= driver.estimated_arrival_time %></dt>
         <dt>Car_type: <%= driver.car_type %></dt>

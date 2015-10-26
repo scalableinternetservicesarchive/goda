@@ -26,18 +26,25 @@ class RidesController < ApplicationController
   def create
     @user = current_user
     driver = Driver.find(params[:driver_id])
-    @ride = @user.book(driver.id)
-
-    respond_to do |format|
-      if @ride.save
-        format.html { redirect_to @ride.user, notice: 'Ride was successfully created.' }
-        format.json { render :show, status: :created, location: @ride }
-      else
-        format.html { render :new }
-        format.json { render json: @ride.errors, status: :unprocessable_entity }
-      end
+    if driver.left > 0
+   	 @ride = @user.book(driver.id)
+   	 driver.left -= 1
+   	 driver.save
+   
+   	 respond_to do |format|
+      	if @ride.save
+        	format.html { redirect_to @ride.user, notice: 'Ride was successfully created.' }
+        	format.json { render :show, status: :created, location: @ride }
+        else
+        	format.html { render :new }
+        	format.json { render json: @ride.errors, status: :unprocessable_entity }
+      	end
+    	end
+     else 
+	flash[:notice] = 'No space left!'
+	redirect_to drivers_path
     end
-  end
+    end
 
   # PATCH/PUT /rides/1
   # PATCH/PUT /rides/1.json
