@@ -26,7 +26,7 @@ class RidesController < ApplicationController
   def create
     @user = current_user
     driver = Driver.find(params[:driver_id])
-    if driver.left > 0
+    if driver.left > 0 || params[:'my_input'] < driver.left
 #    @ride = @user.book(driver.id, params[:quantity].to_i)
   
    	 @ride = @user.book(driver.id, params['my_input'].to_i)
@@ -44,7 +44,7 @@ class RidesController < ApplicationController
       	end
     	end
      else 
-	flash[:notice] = 'No space left!'
+	flash[:notice] = 'No enough space left!'
 	redirect_to drivers_path
     end
     end
