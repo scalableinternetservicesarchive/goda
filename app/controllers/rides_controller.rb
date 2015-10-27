@@ -27,8 +27,11 @@ class RidesController < ApplicationController
     @user = current_user
     driver = Driver.find(params[:driver_id])
     if driver.left > 0
-   	 @ride = @user.book(driver.id)
-   	 driver.left -= 1
+#    @ride = @user.book(driver.id, params[:quantity].to_i)
+  
+   	 @ride = @user.book(driver.id, params['my_input'].to_i)
+ 	# driver.left -= params[:quantity].to_i
+ 	 driver.left -= params['my_input'].to_i
    	 driver.save
    
    	 respond_to do |format|
