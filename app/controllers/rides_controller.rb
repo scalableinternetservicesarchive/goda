@@ -76,9 +76,11 @@ class RidesController < ApplicationController
   # DELETE /rides/1
   # DELETE /rides/1.json
   def destroy
+    @ride.driver.left += @ride.quantity  
+    @ride.driver.save
     @ride.destroy
     respond_to do |format|
-      format.html { redirect_to rides_url, notice: 'Ride was successfully destroyed.' }
+      format.html { redirect_to current_user, notice: 'Ride was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
