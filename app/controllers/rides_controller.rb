@@ -24,9 +24,19 @@ class RidesController < ApplicationController
   # POST /rides
   # POST /rides.json
   def create
+  #  if params['my_input'].to_i.to_s == params['my_input']    
+
+    flag = Integer(params['my_input']) rescue false
+    if !flag || params['my_input'].to_i <= 0
+        flash[:notice] = 'Please input a positive number'
+        redirect_to drivers_path
+        return
+    end
+    
+
     @user = current_user
     driver = Driver.find(params[:driver_id])
-    if driver.left > 0 || params[:'my_input'] < driver.left
+    if driver.left > 0 && params[:'my_input'].to_i < driver.left
 #    @ride = @user.book(driver.id, params[:quantity].to_i)
   
    	 @ride = @user.book(driver.id, params['my_input'].to_i)
