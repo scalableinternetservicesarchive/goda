@@ -4,7 +4,7 @@ class RidesController < ApplicationController
   # GET /rides
   # GET /rides.json
   def index
-    @rides = Ride.all
+    @rides = current_user.rides
   end
 
   # GET /rides/1
@@ -19,6 +19,12 @@ class RidesController < ApplicationController
 
   # GET /rides/1/edit
   def edit
+    @ride = Ride.find(params[:id])
+    if current_user != @ride.user 
+        flash[:notice] = "Wrong user"   
+        redirect_to @ride
+        return
+    end
   end
 
   # POST /rides
@@ -36,7 +42,7 @@ class RidesController < ApplicationController
 
     @user = current_user
     driver = Driver.find(params[:driver_id])
-    if driver.left > 0 && params[:'my_input'].to_i < driver.left
+    if driver.left > 0 && params[:'my_input'].to_i <= driver.left
 #    @ride = @user.book(driver.id, params[:quantity].to_i)
   
    	 @ride = @user.book(driver.id, params['my_input'].to_i)
@@ -62,15 +68,29 @@ class RidesController < ApplicationController
   # PATCH/PUT /rides/1
   # PATCH/PUT /rides/1.json
   def update
-    respond_to do |format|
-      if @ride.update(ride_params)
-        format.html { redirect_to @ride, notice: 'Ride was successfully updated.' }
-        format.json { render :show, status: :ok, location: @ride }
-      else
-        format.html { render :edit }
-        format.json { render json: @ride.errors, status: :unprocessable_entity }
-      end
-    end
+    @ride = Ride.find(params[:id])
+  #  flash[:notice] = "flash"
+    quantity = ride_params[:quantity]
+     if quantity.to_i > @ride.driver.left + @ride.quantity
+        # redirect_to @ride
+        render "edit"
+        flash[:notice] = 'No enough space'
+        return
+     end
+        @ride.driver.left = @ride.driver.left + @ride.quantity - quantity.to_i
+        @ride.driver.save
+#        @ride.quantity = params[:quantity].to_i
+#        @ride.save
+        respond_to do |format|
+            if @ride.update(ride_params)
+                format.html { redirect_to @ride, notice: 'Ride was successfully updated.' }
+                format.json { render :show, status: :ok, location: @ride }
+            else
+                format.html { render :edit }
+                format.json { render json: @ride.errors, status: :unprocessable_entity }
+            end
+        end
+    
   end
 
   # DELETE /rides/1
@@ -93,6 +113,6 @@ class RidesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ride_params
-      params.require(:ride).permit(:driver_id, :user_id)
+      params.require(:ride).permit(:quantity)
     end
 end

@@ -5,8 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Driver</th>
-      <th>User</th>
+      <th>Driver name</th>
+      <th>quantity</th>
+      <th>start from</th>
+      <th>destination</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,9 +16,11 @@
   <tbody>
     <% @rides.each do |ride| %>
       <tr>
-        <td><%= ride.driver_id %></td>
-        <td><%= ride.user_id %></td>
-        <td><%= link_to 'Show', ride %></td>
+        <td><%= ride.driver.user.name %></td>
+        <td><%= ride.quantity %></td>
+        <td><%= ride.driver.departure %></td>
+        <tf><%= ride.driver.destination %></td>
+         <td><%= link_to 'Show', ride %></td>
         <td><%= link_to 'Edit', edit_ride_path(ride) %></td>
         <td><%= link_to 'Destroy', ride, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

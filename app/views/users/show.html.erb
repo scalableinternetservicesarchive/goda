@@ -81,6 +81,7 @@
     </td>
     <td class = "list_action">
         <%= link_to 'Show', ride.driver %><br/>
+      <%= link_to 'Edit', edit_ride_path(ride) %><br/>
         <%= link_to 'Destroy', ride, method: :delete,
                   data: { confirm: 'Are you sure?' } %>
      </td>
