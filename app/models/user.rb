@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 		current_ride.quantity += quantity
 	else
 		current_ride = rides.build(driver_id: driver_id)
-        current_ride.quantity += quantity - 1
+        current_ride.quantity += quantity
 	end
         current_ride
      end
