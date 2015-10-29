@@ -42,28 +42,33 @@ class RidesController < ApplicationController
 
     @user = current_user
     driver = Driver.find(params[:driver_id])
-    if driver.left > 0 && params[:'my_input'].to_i <= driver.left
+    if @user == driver.user
+	flash[:notice] = 'You can not book your own ride!'
+	redirect_to drivers_path
+    else
+    	if driver.left > 0 && params[:'my_input'].to_i <= driver.left
 #    @ride = @user.book(driver.id, params[:quantity].to_i)
   
-   	 @ride = @user.book(driver.id, params['my_input'].to_i)
+   	 	@ride = @user.book(driver.id, params['my_input'].to_i)
  	# driver.left -= params[:quantity].to_i
- 	 driver.left -= params['my_input'].to_i
-   	 driver.save
+ 	 	driver.left -= params['my_input'].to_i
+   	 	driver.save
    
-   	 respond_to do |format|
-      	if @ride.save
-        	format.html { redirect_to @ride.user, notice: 'Ride was successfully created.' }
-        	format.json { render :show, status: :created, location: @ride }
-        else
-        	format.html { render :new }
-        	format.json { render json: @ride.errors, status: :unprocessable_entity }
-      	end
-    	end
-     else 
-	flash[:notice] = 'No enough space left!'
-	redirect_to drivers_path
+   	 	respond_to do |format|
+      		if @ride.save
+        		format.html { redirect_to @ride.user, notice: 'Ride was successfully created.' }
+        		format.json { render :show, status: :created, location: @ride }
+        	else
+        		format.html { render :new }
+        		format.json { render json: @ride.errors, status: :unprocessable_entity }
+      		end
+    		end
+         else 
+		flash[:notice] = 'No enough space left!'
+		redirect_to drivers_path
+    	 end
     end
-    end
+end
 
   # PATCH/PUT /rides/1
   # PATCH/PUT /rides/1.json
