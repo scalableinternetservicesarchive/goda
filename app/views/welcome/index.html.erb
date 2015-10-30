@@ -2,6 +2,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      p.big {
+        line-height: 170%;
+      }
+    </style>
+
 </head>
 <% provide(:title, "Home") %>
 <% if flash[:notice] %>
@@ -10,8 +16,8 @@
  <div class="container">
   <div class="jumbotron">
     <h1>Welcome To GoDa</h1>
-    <p>GoDa is a platform for carpooling where both drivers and hitchers can conveniently post their travel plans or book a ride from other people’s posts. Drivers may demand a price, and booking a ride means the hitcher agrees to pay this price. Also, the hitchers can post their plan and drivers can choose their clients from the hitcher posts.</p>
-    <p>Sharing a car will not only help to save money, but also is good for the environment. So, let’s start to carpool, and enjoy your trip ^_^</p>
+    <p class="big">GoDa is a platform for carpooling where both drivers and hitchers can conveniently post their travel plans or book a ride from other people’s posts. Drivers may demand a price, and booking a ride means the hitcher agrees to pay this price. Also, the hitchers can post their plan and drivers can choose their clients from the hitcher posts.</p>
+    <p class="big">Sharing a car will not only help to save money, but also is good for the environment. So, let’s start to carpool, and enjoy your trip ^_^</p>
 <!-- row of columns -->
       <div class="row">
         <div class="col-lg-4">

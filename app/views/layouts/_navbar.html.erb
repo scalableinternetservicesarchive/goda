@@ -8,20 +8,24 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">GODA</a>
+      <!-- <a class="navbar-brand" href="/">GODA</a> -->
+
+      <%= link_to "GODA", root_path, class: "navbar-brand" %>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/drivers">Drivers</a></li>
-        <li><a href="/hitchers">Hitchers</a></li>
+        <li><%= link_to "Drivers", drivers_path %></li>
+        <li><%= link_to "Hitchers", hitchers_path %></li>
+
         <% if logged_in? %>        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Post<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="/drivers/new">New Driver Post</a></li>
-            <li><a href="/hitchers/new">New Hitcher Post</a></li>
+            <li><%= link_to "New Driver Post", new_driver_path %></li>
+            <li><%= link_to "New Hitcher Post", new_hitcher_path %></li>
           </ul>
         </li>
       <% end %>
@@ -33,16 +37,15 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 -->    
-    <div class="navbar-right">
-
+     <ul class="nav navbar-nav navbar-right">
       <% if logged_in? %>
-        Logged in as <strong><%= link_to current_user.name, current_user %></strong>.
-        <%= link_to "Log out", logout_path, method: :delete, class: "btn btn-lg btn-primary"  %>
+        <li><%= link_to "Logged in as " + current_user.name, current_user %></li>
+        <li><%= link_to "Log out", logout_path, method: :delete %></li>
       <% else %>
-        <%= link_to "Sign up", signup_path, class: "btn btn-lg btn-primary"  %> 
-        <%= link_to "Log in", login_path, class: "btn btn-lg btn-primary"  %>
+        <li><%= link_to "Sign up", signup_path %></li> 
+        <li><%= link_to "Log in", login_path %></li>
       <% end %>
-    </div>
+     </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
