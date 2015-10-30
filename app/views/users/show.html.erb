@@ -3,11 +3,7 @@
 <% end %>
 
 <% provide(:title, "User Info") %>
-<%= link_to 'Drivers', drivers_path %>
-<%= link_to 'Hitchers', hitchers_path %>
-<%= link_to 'New driver', new_driver_path %>
-<%= link_to 'New hitcher', new_hitcher_path %>
-<h1>Listing Your Drivers</h1>
+<h1>Your Driver Posts</h1>
 
 <table>
 <% @drivers.each do |driver| %>
@@ -18,6 +14,7 @@
         <dt>Destination: <%= driver.destination %></dt>
         <dt>Price: <%= driver.price %></dt>
         <dt>Depart_time: <%= driver.depart_time %></dt>
+        <dt>available/total space: <%= driver.left %>/<%= driver.passenger_num%></dt>
 <!--        <dt>Estimated_arrival_time: <%= driver.estimated_arrival_time %></dt>
         <dt>Car_type: <%= driver.car_type %></dt>
         <dt>Passenger_num: <%= driver.passenger_num %></dt>
