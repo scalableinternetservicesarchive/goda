@@ -3,10 +3,6 @@
 <% end %>
 
 <% provide(:title, "User Info") %>
-<%= link_to 'Drivers', drivers_path %>
-<%= link_to 'Hitchers', hitchers_path %>
-<%= link_to 'New driver', new_driver_path %>
-<%= link_to 'New hitcher', new_hitcher_path %>
 <h1>Listing Your Drivers</h1>
 
 <table>
@@ -18,11 +14,6 @@
         <dt>Destination: <%= driver.destination %></dt>
         <dt>Price: <%= driver.price %></dt>
         <dt>Depart_time: <%= driver.depart_time %></dt>
-<!--        <dt>Estimated_arrival_time: <%= driver.estimated_arrival_time %></dt>
-        <dt>Car_type: <%= driver.car_type %></dt>
-        <dt>Passenger_num: <%= driver.passenger_num %></dt>
-        <dt>Contact_info: <%= driver.contact_info %></dt>
-        <dt>Description: <%= truncate(strip_tags(driver.description), length: 80) %></dt>-->
       </dl>
     </td>
     <td class = "list_action">
@@ -34,7 +25,6 @@
   </tr>
 <% end %>
 </table>
-<br />
 
 <h1>Listing Your Hitchers</h1>
 
@@ -62,14 +52,8 @@
   </tr>
 <% end %>
 </table>
-<h1>Listing Your Rides</h1>
-<ul>
-   <% @user.rides.each do |ride| %>
-	<li><%= ride.quantity %> &times;<%= ride.driver.destination %></li>
-   <% end %>
-</ul>
 
-<h1>Listing Your Rides 2</h1>
+<h1>Listing Your Rides</h1>
 
 <table>
 <% @user.rides.each do |ride| %>
@@ -92,3 +76,24 @@
   </tr>
 <% end %>
 </table>
+<h1>Listing Your Takes</h1>
+
+<table>
+<% @user.takes.each do |take| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt>Departure: <%= take.hitcher.departure %></dt>
+        <dt>Destination: <%= take.hitcher.destination %></dt>
+        <dt>Depart_time: <%= take.hitcher.depart_time %></dt>
+        <dt>Num: <%= take.quantity %></dt>
+      </dl>
+    </td>
+    <td class = "list_action">
+        <%= link_to 'Show', take.hitcher %><br/>
+        <%= link_to 'Destroy', take, method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+     </td>
+  </tr>
+<% end %>
+

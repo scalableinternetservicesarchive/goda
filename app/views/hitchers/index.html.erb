@@ -1,4 +1,7 @@
 <% provide(:title, "Hitchers") %>
+<p class='notice'><% if notice %>
+<%=  notice %>
+<% end %></p>
 <h1>Listing Hitchers</h1>
 
 <table>
@@ -9,6 +12,7 @@
         <dt>Departure: <%= hitcher.departure %></dt>
         <dt>Destination: <%= hitcher.destination %></dt>
         <dt>Depart_time: <%= hitcher.depart_time %></dt>
+        <dt><%= button_to 'Accept this hitcher', takes_path(hitcher_id: hitcher) %></dt>
 <!--        <dt>arrival_time: <%= hitcher.arrival_time %></dt>
         <dt>num: <%= hitcher.num %></dt>
         <dt>Contact_info: <%= hitcher.contact_info %></dt>
