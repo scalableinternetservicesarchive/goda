@@ -9,14 +9,46 @@
 User.delete_all
 
 User.create(
-    name: 'qqqq'
-    password: '111111'
+    name: 'qqqq',
+    password: '111111',
     password_confirmation: '111111'
 )
 
 User.create(
-    name: 'wwww'
-    password: '111111'
+    name: 'wwww',
+    password: '111111',
+    password_confirmation: '111111'
+)
+
+User.create(
+    name: 'eeee',
+    password: '111111',
+    password_confirmation: '111111'		
+)
+
+User.create(
+    name: 'rrrr',
+    password: '111111',
+    password_confirmation: '111111'
+)
+User.create(
+    name: 'tttt',
+    password: '111111',
+    password_confirmation: '111111'
+)
+User.create(
+    name: 'yyyy',
+    password: '111111',
+    password_confirmation: '111111'
+)
+User.create(
+    name: 'uuuu',
+    password: '111111',
+    password_confirmation: '111111'
+)
+User.create(
+    name: 'iiii',
+    password: '111111',
     password_confirmation: '111111'
 )
 

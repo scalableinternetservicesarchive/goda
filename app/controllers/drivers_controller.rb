@@ -2,7 +2,6 @@ class DriversController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :destroy]
   def index
       @drivers = Driver.all
-    # @drivers = current_user.drivers
   end
   def new
      @driver = Driver.new

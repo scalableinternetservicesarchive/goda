@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026000822) do
+ActiveRecord::Schema.define(version: 20151030191149) do
 
   create_table "drivers", force: :cascade do |t|
     t.string   "departure"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20151026000822) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "quantity",   default: 0
+  end
+
+  create_table "takes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "hitcher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "quantity"
   end
 
   create_table "users", force: :cascade do |t|
