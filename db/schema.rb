@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021051555) do
+ActiveRecord::Schema.define(version: 20151026000822) do
 
   create_table "drivers", force: :cascade do |t|
     t.string   "departure"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20151021051555) do
     t.datetime "updated_at",             null: false
     t.integer  "userid"
     t.integer  "user_id"
+    t.integer  "left"
   end
 
   add_index "drivers", ["user_id"], name: "index_drivers_on_user_id"
@@ -45,6 +46,14 @@ ActiveRecord::Schema.define(version: 20151021051555) do
   end
 
   add_index "hitchers", ["user_id"], name: "index_hitchers_on_user_id"
+
+  create_table "rides", force: :cascade do |t|
+    t.integer  "driver_id"
+    t.integer  "user_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 0
+  end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",      null: false

@@ -1,5 +1,9 @@
 <% provide(:title, "Driver") %>
 <p id="notice"><%= notice %></p>
+<p>
+  <strong>User:</strong>
+  <%= @driver.user.name %>
+</p>
 
 <p>
   <strong>Departure:</strong>
@@ -33,8 +37,8 @@
 
 
 <p>
-  <strong>Passenger num:</strong>
-  <%= @driver.passenger_num %>
+  <strong>Passenger left/Passenger num:</strong>
+  <%= @driver.left %>/<%= @driver.passenger_num %>
 </p>
 
 <p>
@@ -45,6 +49,17 @@
 <p>
   <strong>Description:</strong>
   <%= @driver.description %>
+</p>
+
+
+<p>
+	<strong>Has been booked by the following users: </strong>
+	<%  @rides.each do |ride|%>
+	<ul>
+		<li><%= ride.user.name%>: <%= ride.quantity %></li> 
+	</ul>
+	<% end %>
+
 </p>
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |

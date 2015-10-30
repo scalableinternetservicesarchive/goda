@@ -41,7 +41,7 @@ class DriversController < ApplicationController
   def create
     
     @driver = current_user.drivers.build(driver_params)
-    
+    @driver.left = @driver.passenger_num
     if  @driver.save
         flash[:success] = "Driver post created!"
         redirect_to current_user
@@ -52,7 +52,8 @@ class DriversController < ApplicationController
 
   def show
      #@drivers = current_user.drivers
-     @driver = Driver.find(params[:id]) 
+     @driver = Driver.find(params[:id])
+     @rides = @driver.rides.all
   end
 
   private 

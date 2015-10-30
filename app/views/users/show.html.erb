@@ -1,3 +1,7 @@
+<% if notice %>
+<%= notice %>
+<% end %>
+
 <% provide(:title, "User Info") %>
 <%= link_to 'Drivers', drivers_path %>
 <%= link_to 'Hitchers', hitchers_path %>
@@ -58,4 +62,33 @@
   </tr>
 <% end %>
 </table>
+<h1>Listing Your Rides</h1>
+<ul>
+   <% @user.rides.each do |ride| %>
+	<li><%= ride.quantity %> &times;<%= ride.driver.destination %></li>
+   <% end %>
+</ul>
 
+<h1>Listing Your Rides 2</h1>
+
+<table>
+<% @user.rides.each do |ride| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt>Departure: <%= ride.driver.departure %></dt>
+        <dt>Destination: <%= ride.driver.destination %></dt>
+        <dt>Price: <%= ride.driver.price %></dt>
+        <dt>Depart_time: <%= ride.driver.depart_time %></dt>
+        <dt>Num: <%= ride.quantity %></dt>
+      </dl>
+    </td>
+    <td class = "list_action">
+        <%= link_to 'Show', ride.driver %><br/>
+      <%= link_to 'Edit', edit_ride_path(ride) %><br/>
+        <%= link_to 'Destroy', ride, method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+     </td>
+  </tr>
+<% end %>
+</table>

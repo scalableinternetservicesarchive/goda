@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<!--<p>
+  <strong>Driver:</strong>
+  <%= @ride.driver_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @ride.user_id %>
+</p>-->
+<p>
+    <strong>Driver name:</strong>
+    <%= @ride.driver.user.name %>
+</p>
+
+<p>
+  <strong>Number of passengers:</strong>
+  <%= @ride.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_ride_path(@ride) %> |
+<%= link_to 'Back', rides_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
  
+  resources :rides
   get 'sessions/new'
 
   get 'welcome/index'
