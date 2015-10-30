@@ -1,15 +1,29 @@
 <% provide(:title, "Hitchers") %>
-<p class='notice'><% if notice %>
-<%=  notice %>
-<% end %></p>
-<h1>Listing Hitchers</h1>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<h1>Listing Hitcher Posts</h1>
 
 <%= form_for @search, :url => "/hitchers/index" do |f|%>
-    <%= f.label :departure%>
-    <%= f.text_field :departure%>
-    <%= f.label :destination%>
-    <%= f.text_field :destination%>
-    <%= f.submit%>
+ <div class="row">
+  <div class="col-lg-1">
+    <%= f.label :departure %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :departure %><class="form-control" placeholder=".col-lg-3">
+  </div>
+  <div class="col-lg-1">
+    <%= f.label :destination %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :destination %><class="form-control" placeholder=".col-lg-3">
+  </div>
+  <div class="col-lg-1">
+    <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
+  </div>
+ </div>
 <% end %>
 
 <table>
@@ -20,22 +34,14 @@
         <dt>Departure: <%= hitcher.departure %></dt>
         <dt>Destination: <%= hitcher.destination %></dt>
         <dt>Depart_time: <%= hitcher.depart_time %></dt>
-        <dt><%= button_to 'Accept this hitcher', takes_path(hitcher_id: hitcher) %></dt>
-<!--        <dt>arrival_time: <%= hitcher.arrival_time %></dt>
-        <dt>num: <%= hitcher.num %></dt>
-        <dt>Contact_info: <%= hitcher.contact_info %></dt>
-        <dt>Description: <%= truncate(strip_tags(hitcher.description), length: 80) %></dt>
--->
+        <dt>hitvher numbers: <%= hitcher.num %></dt>
       </dl>
     </td>
     <td>
-      <%= link_to 'Show', hitcher %><br/>
-      <%= link_to 'Edit', edit_hitcher_path(hitcher) %><br/>
-      <%= link_to 'Destroy', hitcher, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Show Details', hitcher %><br/>
+      <br/>
+      <dt><%= button_to 'Accept this hitcher', takes_path(hitcher_id: hitcher) %></dt>
     </td>
   </tr>
 <% end %>
 </table>
-<br />
-<%= link_to 'New hitcher', new_hitcher_path %>

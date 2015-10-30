@@ -1,5 +1,5 @@
 <% provide(:title, "New Driver Post") %>
-<h1>New Driver Post</h1>
+<h1 class="center">New Driver Post</h1>
 
 <% if @driver.errors.any? %>
    <div id="error_explanation">
@@ -13,7 +13,9 @@
      </ul>
    </div>
 <% end %>
-<%= render 'form' %>
 
-<%= link_to 'Back', drivers_path %>
+<div class="new_post center-block">
+  <%= render 'form' %>
+</div>
+
 
