@@ -1,8 +1,40 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      p.big {
+        line-height: 170%;
+      }
+    </style>
+
+</head>
 <% provide(:title, "Home") %>
 <% if flash[:notice] %>
    <div class="notice"><%= flash[:notice] %></div>
 <% end %>
-      <ul>
-        <li><p class="driver" style="color:#00FF00;font-size:30px;display:inline;margin-left:30px;"><%= link_to "Drivers", drivers_url %></p></li>
-        <li><p class="hitcher" style="font-size:30px;display:inline;margin-left:30px;"><%= link_to "Hitchers", hitchers_url %></p></li>
-      </ul>
+ <div class="container">
+  <div class="jumbotron">
+    <h1>Welcome To GoDa</h1>
+    <p class="big">GoDa is a platform for carpooling where both drivers and hitchers can conveniently post their travel plans or book a ride from other people’s posts. Drivers may demand a price, and booking a ride means the hitcher agrees to pay this price. Also, the hitchers can post their plan and drivers can choose their clients from the hitcher posts.</p>
+    <p class="big">Sharing a car will not only help to save money, but also is good for the environment. So, let’s start to carpool, and enjoy your trip ^_^</p>
+<!-- row of columns -->
+      <div class="row">
+        <div class="col-lg-4">
+          <h2>Looking for a driver?</h2>
+          <p>Here are the driver posts prepared for you:</p>
+          <p><a class="btn btn-primary" href="drivers" role="button">View driver posts &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2>Looking for hitchers?</h2>
+          <p>Here are the hitcher posts prepared for you: </p>
+          <p><a class="btn btn-primary" href="hitchers" role="button">View hitcher posts &raquo;</a></p>
+       </div>
+       <div class="col-lg-4">
+          <h2>Post your own plan?</h2>
+          <p>Please first sign up, than you can post your own plan. </p>
+          <p><a class="btn btn-primary" href="signup" role="button">Sign up &raquo;</a></p>
+       </div>
+      </div>
+  </div>
+

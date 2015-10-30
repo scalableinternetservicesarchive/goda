@@ -2,7 +2,7 @@
 <html>
 <head>
 <!-- START_HIGHLIGHT -->
-  <title><%= yield(:title) %> | GoDa</title>
+  <title><%= full_title(yield(:title)) %> | GoDa</title>
 <!-- END_HIGHLIGHT -->
   <!-- <label id="code.slt"/> --><%= stylesheet_link_tag    "application", media: "all",
     "data-turbolinks-track" => true %>
@@ -12,31 +12,7 @@
 <!-- END:head -->
 <body class="<%= controller.controller_name %>">
 
-<!-- START_HIGHLIGHT -->
-  <div id="banner">
-    <%= link_to  "Welcome To GoDa", root_url %><!-- <label id="code.depot.e.title"/> -->
-  </div>
+<%= render 'layouts/navbar' %>
 
-<%= yield %>
-<!--
-  <div id="columns">
-    <div id="side">
-      <ul>
-        <li><a href="http://www....">Home</a></li><li><a href = "">Drivers</a></li>
-      </ul>
-    </div>
--->
-    <div id="main">
-<!-- END_HIGHLIGHT -->
-      <% if logged_in? %>
-        Logged in as <strong><%= current_user.name %></strong>.
-        <%= link_to "Logout", logout_path, method: :delete, :class => 'navbar-link'  %>
-      <% else %>
-        <%= link_to "Sign up", signup_path, :class => 'navbar-link'  %> |
-        <%= link_to "Login", login_path, :class => 'navbar-link'  %>
-      <% end %>
-<!-- START_HIGHLIGHT -->
-    </div>
-  </div>
-<!-- END_HIGHLIGHT -->
+  <%= yield %>
 </body>
