@@ -1,4 +1,8 @@
 <% provide(:title, "Log In") %>
+<p class='notice'><% if notice %>
+<%= notice %>
+<% end %>
+</p>
 <h1>This is the login page</h1>
 
 <%= render 'form' %>
