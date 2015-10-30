@@ -1,3 +1,36 @@
+<html>
+<head>
+<meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <style>
+    .map_canvas {
+        width: 600px;
+        height: 400px;
+        border: 1px solid #FF0000;
+        margin: 10px 20px 10px 0;
+    }
+  </style>
+  <script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+  <!-- Geocomplete plugin -->
+  <script src="//cdn.jsdelivr.net/jquery.geocomplete/1.6.4/jquery.geocomplete.min.js"></script>
+  <script>
+      $('body').on('focus',".geocomplete",function(){
+        var options = {
+          map: ".map_canvas"
+        };
+        $(this).geocomplete(options);
+        });
+    </script>
+  <script>
+  $('body').on('focus',".datepicker",function(){
+    $(this).datepicker();
+   }); 
+  </script>
+</head>
+<body>
 <%= form_for(@hitcher) do |f| %>
   <% if @hitcher.errors.any? %>
     <div id="error_explanation">
@@ -13,19 +46,20 @@
 
   <div class="field">
     <%= f.label :departure %><br>
-    <%= f.text_field :departure %>
+    <%= f.text_field :departure, :class => "geocomplete", :placeholder => "Type in an address" %>
   </div>
   <div class="field">
     <%= f.label :destination %><br>
-    <%= f.text_field :destination %>
+    <%= f.text_field :destination, :class => "geocomplete", :placeholder => "Type in an address" %>
   </div>
+  <div class="map_canvas"></div>
   <div class="field">
     <%= f.label :depart_time %><br>
-    <%= f.text_field :depart_time %>
+    <%= f.text_field :depart_time, :class =>"datepicker" %>
   </div>
   <div class="field">
     <%= f.label :arrival_time %><br>
-    <%= f.text_field :arrival_time %>
+    <%= f.text_field :arrival_time, :class =>"datepicker" %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
@@ -44,4 +78,5 @@
     <%= f.submit %>
   </div>
 <% end %>
- 
+</body>
+</html> 
