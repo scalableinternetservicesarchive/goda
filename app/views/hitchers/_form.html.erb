@@ -17,6 +17,7 @@
   <!-- Geocomplete plugin -->
   <script src="//cdn.jsdelivr.net/jquery.geocomplete/1.6.4/jquery.geocomplete.min.js"></script>
   <script>
+      $('body').off("focus");
       $('body').on('focus',".geocomplete",function(){
         var options = {
           map: ".map_canvas"
