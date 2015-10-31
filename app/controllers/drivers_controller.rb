@@ -1,7 +1,9 @@
 class DriversController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :destroy]
   def index
-      @drivers = Driver.all
+    #  @drivers = Driver.all
+      @search  = Search.new(Driver, params[:search])
+      @drivers = @search.run
   end
   def new
      @driver = Driver.new
