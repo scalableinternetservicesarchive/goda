@@ -58,9 +58,9 @@ ActiveRecord::Schema.define(version: 20151030191149) do
   create_table "takes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "hitcher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "quantity"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 0
   end
 
   create_table "users", force: :cascade do |t|
