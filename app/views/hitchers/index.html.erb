@@ -4,6 +4,14 @@
 <% end %></p>
 <h1>Listing Hitchers</h1>
 
+<%= form_for @search, :url => "/hitchers/index" do |f|%>
+    <%= f.label :departure%>
+    <%= f.text_field :departure%>
+    <%= f.label :destination%>
+    <%= f.text_field :destination%>
+    <%= f.submit%>
+<% end %>
+
 <table>
 <% @hitchers.each do |hitcher| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
