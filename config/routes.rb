@@ -25,6 +25,9 @@ Rails.application.routes.draw do
      resources :hitchers
   
     post '/drivers/index', :controller => 'drivers', :action => "index"
+    
+    post '/hitchers/index', :controller => 'hitchers', :action => "index"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

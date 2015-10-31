@@ -1,7 +1,9 @@
 class HitchersController < ApplicationController
   before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
-     @hitchers = Hitcher.all
+    @search = Search.new(Hitcher, params[:search]) 
+#    @hitchers = Hitcher.all
+    @hitchers = @search.run
   end
   def new
      @hitcher = Hitcher.new
