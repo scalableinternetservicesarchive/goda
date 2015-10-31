@@ -1,11 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+function clickHandler() {
+    $('#hide').toggle();
+    $('#show').toggle();
+    $('#drivers').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show').hide();
+    $('#hide, #show').on('click', clickHandler);
+});
+</script>
+<script>
+function clickHandler1() {
+    $('#hide1').toggle();
+    $('#show1').toggle();
+    $('#hitchers').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show1').hide();
+    $('#hide1, #show1').on('click', clickHandler1);
+});
+</script>
+
+<script>
+function clickHandler2() {
+    $('#hide2').toggle();
+    $('#show2').toggle();
+    $('#rides').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show2').hide();
+    $('#hide2, #show2').on('click', clickHandler2);
+});
+</script>
+<script>
+function clickHandler3() {
+    $('#hide3').toggle();
+    $('#show3').toggle();
+    $('#takess').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show3').hide();
+    $('#hide3, #show3').on('click', clickHandler3);
+});
+</script>
+<style>
+button {
+    margin: 0 auto 5px auto;
+    width: 300px;
+    height: 35px;
+    border: 0 none;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+</style>
+<head>
+<body>
 <% if notice %>
 <%= notice %>
 <% end %>
-
 <% provide(:title, "User Info") %>
 <h1>Listing Your Drivers</h1>
-
-<table>
+<div>
+    <button id="show">List Your Drivers</button>
+    <button id="hide">Hide Your Drivers</button>
+</div>
+<table id="drivers">
 <% @drivers.each do |driver| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -27,8 +95,11 @@
 </table>
 
 <h1>Listing Your Hitchers</h1>
-
-<table>
+<div>
+    <button id="show1">List Your Hitchers</button>
+    <button id="hide1">Hide Your Hitchers</button>
+</div>
+<table id="hitchers">
 <% @hitchers.each do |hitcher| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -54,8 +125,11 @@
 </table>
 
 <h1>Listing Your Rides</h1>
-
-<table>
+<div>
+    <button id="show2">List Your Rides</button>
+    <button id="hide2">Hide Your Rides</button>
+</div>
+<table id="rides">
 <% @user.rides.each do |ride| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -77,8 +151,11 @@
 <% end %>
 </table>
 <h1>Listing Your Takes</h1>
-
-<table>
+<div>
+    <button id="show3">List Your Takes</button>
+    <button id="hide3">Hide Your Takes</button>
+</div>
+<table id="takes">
 <% @user.takes.each do |take| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -96,3 +173,4 @@
      </td>
   </tr>
 <% end %>
+</body>
