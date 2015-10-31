@@ -3,7 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .hitchers {
     table {
-        border-collapse: collapse;
+      width: 100%;
+      border: 0;
+      border-collapse: collapse;
     }
   
     table tr td {
@@ -37,10 +39,10 @@
     }
 
     .list_line_even {
-        background:     #e0f8f8;
+        background-color:     #eeeeee;
     }
     
     .list_line_odd {
-        background:     #f8b0f8;
+        background-color:     #faeefa;
     }
 }

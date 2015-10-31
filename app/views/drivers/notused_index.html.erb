@@ -1,0 +1,43 @@
+<% provide(:title, "Drivers") %>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<h1>Listing Driver Posts</h1>
+
+<table>
+<% @drivers.each do |driver| %>
+  <tr class="index_head">
+    <th>Depart--Desctination</th>
+    <th>Depart_time</th>
+    <th>Price</th>
+    <th>User</th>
+    <th>available/total space</th>
+    <th>Book a ride</th>
+  </tr>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+        <td><%= driver.departure %>--<%= driver.destination %></td>
+        <td><%= driver.depart_time %></td>
+        <td><%= driver.price %></td>
+        <td><%= driver.user.name %></td>
+        <td><%= driver.left %>/<%= driver.passenger_num%></td><div class = "user input">    
+<td><%= form_tag rides_path(:driver_id => driver) do %>
+    <%= text_field_tag :my_input %>
+    <%= submit_tag "Book a Ride" %>
+<% end %>
+</div>
+
+<!--	<dt><%= button_to 'Book a Ride', rides_path(driver_id: driver) %></dt>-->
+      </dl>
+    </td>
+    <td class = "list_action">
+      <%= link_to 'Show', driver %><br/>
+      <%= link_to 'Edit', edit_driver_path(driver) %><br/>
+      <%= link_to 'Destroy', driver, method: :delete,
+                  data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>

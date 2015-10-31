@@ -2,7 +2,7 @@
 <html>
 <head>
 <!-- START_HIGHLIGHT -->
-  <title><%= full_title(yield(:title)) %> | GoDa</title>
+  <title><%= full_title(yield(:title)) %></title>
 <!-- END_HIGHLIGHT -->
   <!-- <label id="code.slt"/> --><%= stylesheet_link_tag    "application", media: "all",
     "data-turbolinks-track" => true %>
@@ -10,9 +10,11 @@
   <%= csrf_meta_tags %><!-- <label id="code.csrf"/> -->
 </head>
 <!-- END:head -->
-<body class="<%= controller.controller_name %>">
+  <body class="<%= controller.controller_name %>">
 
-<%= render 'layouts/navbar' %>
-
-  <%= yield %>
-</body>
+    <%= render 'layouts/navbar' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

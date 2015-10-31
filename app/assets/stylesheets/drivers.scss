@@ -3,44 +3,25 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .drivers {
     table {
-        border-collapse: collapse;
-    }
-  
-    table tr td {
-        padding: 5px;
-        vertical-align: top;
+      width: 100%;
+      border: 0;
+      border-collapse: collapse;
     }
 
- //   .list_image {
- //       width: 60px;
- //       height: 70px;
- //   }
-
-    .list_description {
-        width: 90%;
-        
-        dl {
-            margin: 0;
-        }
-
-        dt {
-            color:               #244;
-            font-weight:         bold;
-            font-size:           larger;                
-        }
-    }
-
-    .list_action {
-        font-size:      x-small;
-        text-align:     right;
-        padding-left:   1em;
-    }
+    table th {
+        background-color:     #d3d3d3;
+    } 
 
     .list_line_even {
-        background:     #e0f8f8;
+        background-color:     #eeeeee;
     }
     
     .list_line_odd {
-        background:     #f8b0f8;
+        background-color:     #eefaee;
     }
+}
+
+.user_input {
+    width: 150px;
+    margin: 0 auto;
 }

@@ -1,5 +1,5 @@
 <% provide(:title, "Sign Up") %>
-<h1>Sign up here</h1>
+<h1 class="center">Sign up here</h1>
 <% if @user.errors.any? %>
  <div id="error_explanation">
   <div class="alert alert-danger">
@@ -14,5 +14,4 @@
 <% end %> 
 <%= render 'form' %>
 
-<%= link_to 'Back', root_url %>
 

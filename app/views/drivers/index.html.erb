@@ -1,8 +1,10 @@
 <% provide(:title, "Drivers") %>
-<p class="notice"><% if notice %>
-<%= notice %>
-<% end %></p>
-<h1>Listing Drivers</h1>
+
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
+<h1>Listing Driver Posts</h1>
 
 <%= form_for @search, :url => "/drivers/index" do |f| %>
 
@@ -24,23 +26,19 @@
         <dt>Depart_time: <%= driver.depart_time %></dt>
 	
         <dt>available/total space: <%= driver.left %>/<%= driver.passenger_num%></dt>
-
-<div class = "user input">    
-<%= form_tag rides_path(:driver_id => driver) do %>
-    <%= text_field_tag :my_input %>
-    <%= submit_tag "Book a Ride" %>
-<% end %>
-</div>
-
-<!--	<dt><%= button_to 'Book a Ride', rides_path(driver_id: driver) %></dt>-->
       </dl>
+
     </td>
     <td class = "list_action">
-      <%= link_to 'Show', driver %><br/>
-      <%= link_to 'Edit', edit_driver_path(driver) %><br/>
-      <%= link_to 'Destroy', driver, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Show Details', driver %><br/>
+      <div class = "user_input">
+        <%= form_tag rides_path(:driver_id => driver) do %>
+        <%= text_field_tag :my_input %>
+        <%= submit_tag "Book a Ride" %>
+        <% end %>
+      </div>
     </td>
+
   </tr>
 <% end %>
 </table>
