@@ -6,14 +6,26 @@
 
 <h1>Listing Driver Posts</h1>
 
-<%= form_for @search, :url => "/drivers/index" do |f| %>
-
-  <%=f.label :departure %>
-  <%=f.text_field :departure %>
-    <%=f.label :destination %>
-  <%=f.text_field :destination %>
-<%=f.submit %>
+<%= form_for @search, :url => "/drivers/index" do |f|%>
+ <div class="row">
+  <div class="col-lg-1">
+    <%= f.label :departure %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :departure %><class="form-control" placeholder=".col-lg-3">
+  </div>
+  <div class="col-lg-1">
+    <%= f.label :destination %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :destination %><class="form-control" placeholder=".col-lg-3">
+  </div>
+  <div class="col-lg-1">
+    <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
+  </div>
+ </div>
 <% end %>
+
 <table>
 <% @drivers.each do |driver| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -24,7 +36,6 @@
         <dt>Destination: <%= driver.destination %></dt>
         <dt>Price: <%= driver.price %></dt>
         <dt>Depart_time: <%= driver.depart_time %></dt>
-	
         <dt>available/total space: <%= driver.left %>/<%= driver.passenger_num%></dt>
       </dl>
 
@@ -42,6 +53,4 @@
   </tr>
 <% end %>
 </table>
-<br />
-<%= link_to 'New driver', new_driver_path %>
 
