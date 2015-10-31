@@ -30,16 +30,24 @@ class TakesController < ApplicationController
 	redirect_to hitchers_path
 	flash[:notice]='You can not accept your own hitcher!'
     else
-        @take = @user.book_hitcher(hitcher.id) 
-        @take.quantity = hitcher.num
-   	respond_to do |format|
-     	    if @take.save
-                 format.html { redirect_to @user, notice: 'Take was successfully created.' }
-                 format.json { render :show, status: :created, location: @take }
-            else
-                 format.html { render :new }
-                 format.json { render json: @take.errors, status: :unprocessable_entity }
-            end
+	@takes = hitcher.takes
+	@take = @takes.first
+	if @take.nil?
+        	@take = @user.book_hitcher(hitcher.id) 
+        	@take.quantity = hitcher.num
+   		respond_to do |format|
+     	    	if @take.save
+                 	format.html { redirect_to @user, notice: 'Take was successfully created.' }
+                 	format.json { render :show, status: :created, location: @take }
+                else
+                 	format.html { render :new }
+                 	format.json { render json: @take.errors, status: :unprocessable_entity }
+                end
+		end
+	else
+		redirect_to hitchers_path
+		flash[:notice] = 'This hitcher has been accepted!'
+
        end
      end
   end
