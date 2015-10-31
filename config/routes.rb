@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
- 
   resources :takes
   resources :rides
   get 'sessions/new'
@@ -25,6 +24,7 @@ Rails.application.routes.draw do
      resources :drivers
      resources :hitchers
   
+    post '/drivers/index', :controller => 'drivers', :action => "index"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

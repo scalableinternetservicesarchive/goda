@@ -6,6 +6,14 @@
 
 <h1>Listing Driver Posts</h1>
 
+<%= form_for @search, :url => "/drivers/index" do |f| %>
+
+  <%=f.label :departure %>
+  <%=f.text_field :departure %>
+    <%=f.label :destination %>
+  <%=f.text_field :destination %>
+<%=f.submit %>
+<% end %>
 <table>
 <% @drivers.each do |driver| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -34,3 +42,6 @@
   </tr>
 <% end %>
 </table>
+<br />
+<%= link_to 'New driver', new_driver_path %>
+
