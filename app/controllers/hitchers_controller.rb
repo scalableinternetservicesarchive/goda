@@ -2,6 +2,11 @@ class HitchersController < ApplicationController
   before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
      @hitchers = Hitcher.all
+     @hitcher = @hitchers.first
+     if @hitcher.user.nil?
+	redirect_to root_url
+	flash[:notice]='No hitcher exists!'
+     end
   end
   def new
      @hitcher = Hitcher.new

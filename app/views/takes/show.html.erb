@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @take.user_id %>
+</p>
+
+<p>
+  <strong>Hitcher:</strong>
+  <%= @take.hitcher_id %>
+</p>
+
+<%= link_to 'Edit', edit_take_path(@take) %> |
+<%= link_to 'Back', takes_path %>

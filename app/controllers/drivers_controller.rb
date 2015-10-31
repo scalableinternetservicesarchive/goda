@@ -2,7 +2,11 @@ class DriversController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :destroy]
   def index
       @drivers = Driver.all
-    # @drivers = current_user.drivers
+      @driver = @drivers.first
+	if @driver.user.nil?
+		redirect_to root_url
+		flash[:notice] = 'No driver exists!'
+	end
   end
   def new
      @driver = Driver.new
