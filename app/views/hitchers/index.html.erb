@@ -37,10 +37,12 @@
         <dt>hitvher numbers: <%= hitcher.num %></dt>
       </dl>
     </td>
-    <td>
+    <td class = "list_action">
       <%= link_to 'Show Details', hitcher %><br/>
       <br/>
-      <dt><%= button_to 'Accept this hitcher', takes_path(hitcher_id: hitcher) %></dt>
+      <div class = "user_input">
+      <dt><%= button_to 'Accept this hitcher', takes_path(hitcher_id: hitcher) %>
+      </div>
     </td>
   </tr>
 <% end %>
