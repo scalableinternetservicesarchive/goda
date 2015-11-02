@@ -1,13 +1,15 @@
 <% provide(:title, "Log In") %>
-
+<body background=<%= asset_path 'multi_cars.jpg' %>>
 <% if notice %>
   <p class='notice'>
   <%= notice %>
   </p>
 <% end %>
+<div class="jumbotron new_post center-block">
+  <h1 class="center">Login To GODA</h1>
 
-<h1 class="center">Login To GODA</h1>
-
-<div class="new_post center-block">
-  <%= render 'form' %>
+  <div>
+    <%= render 'form' %>
+  </div>
 </div>
+</body>

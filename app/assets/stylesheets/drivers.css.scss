@@ -8,9 +8,34 @@
       border-collapse: collapse;
     }
 
-    table th {
-        background-color:     #d3d3d3;
-    } 
+    table tr td {
+        padding: 5px;
+        vertical-align: top;
+    }
+
+    .list_description {
+        width: 90%;
+
+        dl {
+            margin: 0;
+        }
+
+        dt {
+            color:               #244;
+            font-weight:         bold;
+            font-size:           larger;
+        }
+    }
+
+    .list_action {
+        font-size:      x-small;
+        text-align:     right;
+        padding-left:   1em;
+    }
+
+//    table th {
+//        background-color:     #d3d3d3;
+//    } 
 
     .list_line_even {
         background-color:     #eeeeee;
