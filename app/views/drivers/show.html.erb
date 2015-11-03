@@ -66,6 +66,34 @@
 	<% end %>
 
 </p>
+<h2>Comments</h2>
+<% @driver.drivercomments.each do |drivercomment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= drivercomment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= drivercomment.body %>
+  </p>
+<% end %>
+
+
+<h2>Add a comment:</h2>
+<%= form_for([@driver, @driver.drivercomments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', current_user %>
