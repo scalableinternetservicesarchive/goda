@@ -28,6 +28,13 @@ Rails.application.routes.draw do
     
     post '/hitchers/index', :controller => 'hitchers', :action => "index"
 
+    resources :driver do
+        resources :drivercomments
+    end
+    
+    resources :hitcher do
+        resources :hitchercomments
+    end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

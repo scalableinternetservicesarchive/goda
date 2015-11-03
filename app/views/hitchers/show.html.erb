@@ -36,5 +36,35 @@
   <%= @hitcher.description %>
 </p>
 
+<h2>Comments</h2>
+<% @hitcher.hitchercomments.each do |hitchercomment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= hitchercomment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= hitchercomment.body %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_for([@hitcher, @hitcher.hitchercomments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+
+
 <%= link_to 'Edit', edit_hitcher_path(@hitcher) %> |
 <%= link_to 'Back', current_user %>

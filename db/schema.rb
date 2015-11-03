@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151030191149) do
+ActiveRecord::Schema.define(version: 20151103071850) do
+
+  create_table "drivercomments", force: :cascade do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "driver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "drivercomments", ["driver_id"], name: "index_drivercomments_on_driver_id"
 
   create_table "drivers", force: :cascade do |t|
     t.string   "departure"
@@ -31,6 +41,16 @@ ActiveRecord::Schema.define(version: 20151030191149) do
   end
 
   add_index "drivers", ["user_id"], name: "index_drivers_on_user_id"
+
+  create_table "hitchercomments", force: :cascade do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "hitcher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "hitchercomments", ["hitcher_id"], name: "index_hitchercomments_on_hitcher_id"
 
   create_table "hitchers", force: :cascade do |t|
     t.string   "departure"
@@ -58,9 +78,9 @@ ActiveRecord::Schema.define(version: 20151030191149) do
   create_table "takes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "hitcher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "quantity"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 0
   end
 
   create_table "users", force: :cascade do |t|

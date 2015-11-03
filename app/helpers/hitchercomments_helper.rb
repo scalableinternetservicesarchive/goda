@@ -1,0 +1,2 @@
+module HitchercommentsHelper
+end
