@@ -1,4 +1,7 @@
 <% provide(:title, "Sign Up") %>
+
+<body background=<%= asset_path 'multi_cars.jpg' %>>
+<div class="jumbotron new_post center-block">
 <h1 class="center">Sign up here</h1>
 <% if @user.errors.any? %>
  <div id="error_explanation">
@@ -13,7 +16,8 @@
  </div>
 <% end %> 
 
-<div class="new_post center-block">
+<div>
   <%= render 'form' %>
 </div>
-
+</div>
+</body>

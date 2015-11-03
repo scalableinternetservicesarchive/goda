@@ -65,15 +65,17 @@ button {
 <head>
 <body>
 <% if notice %>
-<%= notice %>
+  <%= notice %>
 <% end %>
 <% provide(:title, "User Info") %>
+
+
 <h1>Listing Your Drivers</h1>
 <div>
     <button id="show">List Your Drivers</button>
     <button id="hide">Hide Your Drivers</button>
 </div>
-<table id="drivers">
+<table class="drivers">
 <% @drivers.each do |driver| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -99,7 +101,8 @@ button {
     <button id="show1">List Your Hitchers</button>
     <button id="hide1">Hide Your Hitchers</button>
 </div>
-<table id="hitchers">
+
+<table class="hitchers">
 <% @hitchers.each do |hitcher| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -107,14 +110,9 @@ button {
         <dt>Departure: <%= hitcher.departure %></dt>
         <dt>Destination: <%= hitcher.destination %></dt>
         <dt>Depart_time: <%= hitcher.depart_time %></dt>
-<!--        <dt>arrival_time: <%= hitcher.arrival_time %></dt>
-        <dt>num: <%= hitcher.num %></dt>
-        <dt>Contact_info: <%= hitcher.contact_info %></dt>
-        <dt>Description: <%= truncate(strip_tags(hitcher.description), length: 80) %></dt>
--->
       </dl>
     </td>
-    <td>
+    <td  class = "list_action">
       <%= link_to 'Show', hitcher %><br/>
       <%= link_to 'Edit', edit_hitcher_path(hitcher) %><br/>
       <%= link_to 'Destroy', hitcher, method: :delete,
@@ -129,7 +127,7 @@ button {
     <button id="show2">List Your Rides</button>
     <button id="hide2">Hide Your Rides</button>
 </div>
-<table id="rides">
+<table class="rides">
 <% @user.rides.each do |ride| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -155,7 +153,7 @@ button {
     <button id="show3">List Your Takes</button>
     <button id="hide3">Hide Your Takes</button>
 </div>
-<table id="takes">
+<table class="takes">
 <% @user.takes.each do |take| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
