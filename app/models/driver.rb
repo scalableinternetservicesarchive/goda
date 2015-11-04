@@ -3,4 +3,5 @@ class Driver < ActiveRecord::Base
    belongs_to :user
    has_many :rides
    has_many :drivercomments
+   has_many :driver_likes
 end

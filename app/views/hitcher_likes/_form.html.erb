@@ -1,0 +1,29 @@
+<%= form_for(@hitcher_like) do |f| %>
+  <% if @hitcher_like.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@hitcher_like.errors.count, "error") %> prohibited this hitcher_like from being saved:</h2>
+
+      <ul>
+      <% @hitcher_like.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :hitcher_id %><br>
+    <%= f.number_field :hitcher_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.number_field :quantity %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

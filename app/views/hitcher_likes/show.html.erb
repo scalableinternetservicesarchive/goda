@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Hitcher:</strong>
+  <%= @hitcher_like.hitcher_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @hitcher_like.user_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @hitcher_like.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_hitcher_like_path(@hitcher_like) %> |
+<%= link_to 'Back', hitcher_likes_path %>

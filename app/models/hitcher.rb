@@ -3,4 +3,5 @@ class Hitcher < ActiveRecord::Base
     belongs_to :user
     has_many :takes
     has_many :hitchercomments
+    has_many :hitcher_likes
 end

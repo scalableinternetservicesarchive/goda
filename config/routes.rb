@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :hitcher_likes
+  resources :driver_likes
   resources :takes
   resources :rides
   get 'sessions/new'
-
+  get 'list1' => 'users#list'
   get 'welcome/index'
   root 'welcome#index'
 

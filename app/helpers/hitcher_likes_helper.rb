@@ -1,0 +1,2 @@
+module HitcherLikesHelper
+end

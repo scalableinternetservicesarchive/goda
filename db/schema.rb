@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103164831) do
+ActiveRecord::Schema.define(version: 20151104032040) do
+
+  create_table "driver_likes", force: :cascade do |t|
+    t.integer  "driver_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id"
+  end
 
   create_table "drivercomments", force: :cascade do |t|
     t.string   "commenter"
@@ -33,14 +41,23 @@ ActiveRecord::Schema.define(version: 20151103164831) do
     t.string   "car_type"
     t.integer  "passenger_num"
     t.string   "contact_info"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "userid"
     t.integer  "user_id"
     t.integer  "left"
+    t.integer  "like_num",               default: 0
   end
 
   add_index "drivers", ["user_id"], name: "index_drivers_on_user_id"
+
+  create_table "hitcher_likes", force: :cascade do |t|
+    t.integer  "hitcher_id"
+    t.integer  "user_id"
+    t.integer  "quantity",   default: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "hitchercomments", force: :cascade do |t|
     t.string   "commenter"
@@ -60,9 +77,10 @@ ActiveRecord::Schema.define(version: 20151103164831) do
     t.text     "description"
     t.integer  "num"
     t.string   "contact_info"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "user_id"
+    t.integer  "like_num",     default: 0
   end
 
   add_index "hitchers", ["user_id"], name: "index_hitchers_on_user_id"
@@ -78,16 +96,17 @@ ActiveRecord::Schema.define(version: 20151103164831) do
   create_table "takes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "hitcher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "quantity"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "quantity",   default: 0
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "name"
     t.string   "password_digest"
+    t.integer  "like_num",        default: 0
     t.string   "email"
   end
 
