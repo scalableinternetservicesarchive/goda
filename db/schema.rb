@@ -107,6 +107,7 @@ ActiveRecord::Schema.define(version: 20151104032040) do
     t.string   "name"
     t.string   "password_digest"
     t.integer  "like_num",        default: 0
+    t.string   "email"
   end
 
 end
