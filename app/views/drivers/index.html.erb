@@ -49,6 +49,11 @@
         <%= submit_tag "Book a Ride" %>
         <% end %>
       </div>
+      <div class = "user_input">
+        <%= button_to 'like', driver_likes_path(driver_id: driver) %>
+	<%= driver.like_num %>
+      </div>
+
     </td>
 
   </tr>

@@ -1,0 +1,17 @@
+<% if notice %>
+<%= notice %>
+<% end %>
+
+
+<table>
+<% @users.each do |user| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt>User: <%= user.name %>, like_num: <%= user.like_num %> </dt>
+      </dl>
+
+    </td>
+ </tr>
+<% end %>
+</table>

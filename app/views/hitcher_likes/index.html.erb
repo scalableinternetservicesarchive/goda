@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Hitcher Likes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Hitcher</th>
+      <th>User</th>
+      <th>Quantity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hitcher_likes.each do |hitcher_like| %>
+      <tr>
+        <td><%= hitcher_like.hitcher_id %></td>
+        <td><%= hitcher_like.user_id %></td>
+        <td><%= hitcher_like.quantity %></td>
+        <td><%= link_to 'Show', hitcher_like %></td>
+        <td><%= link_to 'Edit', edit_hitcher_like_path(hitcher_like) %></td>
+        <td><%= link_to 'Destroy', hitcher_like, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hitcher like', new_hitcher_like_path %>

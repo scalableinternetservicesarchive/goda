@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+   
+    def list
+	@users = User.order(like_num: :desc)
+    end
+
+
     def new
         @user = User.new
     end

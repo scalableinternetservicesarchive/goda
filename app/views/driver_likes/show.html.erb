@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @driver_like.driver_id %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @driver_like.quantity %>
+</p>
+
+<%= link_to 'Edit', edit_driver_like_path(@driver_like) %> |
+<%= link_to 'Back', driver_likes_path %>
