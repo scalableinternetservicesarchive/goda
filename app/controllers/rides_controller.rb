@@ -15,6 +15,7 @@ class RidesController < ApplicationController
   # GET /rides/new
   def new
     @ride = Ride.new
+
   end
 
   # GET /rides/1/edit
@@ -38,24 +39,23 @@ class RidesController < ApplicationController
         redirect_to drivers_path
         return
     end
-    
-
     @user = current_user
     driver = Driver.find(params[:driver_id])
     if @user == driver.user
-	flash[:notice] = 'You can not book your own ride!'
-	redirect_to drivers_path
+	    flash[:notice] = 'You can not book your own ride!'
+	    redirect_to drivers_path
     else
     	if driver.left > 0 && params[:'my_input'].to_i <= driver.left
 #    @ride = @user.book(driver.id, params[:quantity].to_i)
   
    	 	@ride = @user.book(driver.id, params['my_input'].to_i)
  	# driver.left -= params[:quantity].to_i
- 	 	driver.left -= params['my_input'].to_i
+ 	 	  driver.left -= params['my_input'].to_i
    	 	driver.save
    
    	 	respond_to do |format|
       		if @ride.save
+            BookNotifier.driverbooked(@ride).deliver
         		format.html { redirect_to @ride.user, notice: 'Ride was successfully created.' }
         		format.json { render :show, status: :created, location: @ride }
         	else
@@ -63,9 +63,9 @@ class RidesController < ApplicationController
         		format.json { render json: @ride.errors, status: :unprocessable_entity }
       		end
     		end
-         else 
-		flash[:notice] = 'No enough space left!'
-		redirect_to drivers_path
+       else 
+		  flash[:notice] = 'No enough space left!'
+		  redirect_to drivers_path
     	 end
     end
 end
