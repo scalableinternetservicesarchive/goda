@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104032040) do
+ActiveRecord::Schema.define(version: 20151105020544) do
 
   create_table "driver_likes", force: :cascade do |t|
     t.integer  "driver_id"
@@ -101,13 +101,23 @@ ActiveRecord::Schema.define(version: 20151104032040) do
     t.integer  "quantity",   default: 0
   end
 
+  create_table "usercomments", force: :cascade do |t|
+    t.string   "commenter"
+    t.text     "body"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "usercomments", ["user_id"], name: "index_usercomments_on_user_id"
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "name"
     t.string   "password_digest"
-    t.integer  "like_num",        default: 0
     t.string   "email"
+    t.integer  "like_num",        default: 0
   end
 
 end

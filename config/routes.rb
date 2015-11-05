@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   resources :takes
   resources :rides
   get 'sessions/new'
+  # list favoriate users
   get 'list1' => 'users#list'
   get 'welcome/index'
   root 'welcome#index'
+  
+  # list user's information to other users
+  get 'userprofile' => 'users#userprofile'
 
   get 'hitchers/index'
 
@@ -30,12 +34,18 @@ Rails.application.routes.draw do
     
     post '/hitchers/index', :controller => 'hitchers', :action => "index"
 
+    post 'users/index', :controller => 'users', :action => "index"    
+
     resources :driver do
         resources :drivercomments
     end
     
     resources :hitcher do
         resources :hitchercomments
+    end
+
+    resources :user do
+        resources :usercomments
     end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
