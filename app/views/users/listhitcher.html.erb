@@ -1,17 +1,18 @@
-<% if notice %>
+<p class = 'notice'><% if notice %>
 <%= notice %>
-<% end %>
-<h1>Listing Users With Most Popular Drivers</h1>
+<% end %></p>
+<h1>Listing Users With Most Popular Hitchers</h1>
 
 	<table>
 	<% @users.each do |user| %>
 	  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
 	    <td class="list_description">
 	      <dl>
-		<dt>User: <%= user.name %>, post_like_num: <%= user.like_num %> </dt>
+		<dt>User: <%= user.name %>, hitcher_like_num: <%= user.hitcher_like_num %> </dt>
 	      </dl>
 
 	    </td>
 	 </tr>
 	<% end %>
 	</table>
+
