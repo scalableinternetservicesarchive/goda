@@ -54,9 +54,11 @@
 
 <table>
 <% @hitchers.each do |hitcher| %>
+  <% if hitcher.user %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
       <dl>
+        <dt>User: <%= hitcher.user.name %></dt>
         <dt>Departure: <%= hitcher.departure %></dt>
         <dt>Destination: <%= hitcher.destination %></dt>
         <dt>Depart_time: <%= hitcher.depart_time %></dt>
@@ -73,6 +75,7 @@
       </div>
     </td>
   </tr>
+ <% end %>
 <% end %>
 </table>
 </body>
