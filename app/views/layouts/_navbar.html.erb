@@ -19,8 +19,18 @@
       <ul class="nav navbar-nav">
         <li><%= link_to "Drivers", drivers_path %></li>
         <li><%= link_to "Hitchers", hitchers_path %></li>
+        <li><%= link_to "All Users", users_path %></li>
 
         <% if logged_in? %>        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Most Popular Users<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+    <li><%= link_to "Most Popular Users(Drivers)", listdriverlike_path %></li>
+          <li><%= link_to "Most Popular Users(Hitchers)", listhitcherlike_path %></li>
+    <li><%= link_to "Most Popular Users", list1_path %></li>
+          </ul>
+        </li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Post<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -29,10 +39,6 @@
           </ul>
         </li>
 	<li><%= link_to "Profile", current_user %></li>
-        <li><%= link_to "Most Popular Users(Drivers)", listdriverlike_path %></li>
-        <li><%= link_to "Most Popular Users(Hitchers)", listhitcherlike_path %></li>
-	<li><%= link_to "Most Popular Users", list1_path %></li>
-        <li><%= link_to "All Users", users_path %></li>
       <% end %>
       </ul>
 <!--      <form class="navbar-form navbar-left" role="search">

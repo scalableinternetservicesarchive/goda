@@ -1,6 +1,9 @@
 <% provide(:title, "Hitcher") %>
 <p id="notice"><%= notice %></p>
 
+<body style="background-color:#eeeefa">
+<h1>Hitcher Trip Information</h1>
+
 <p>
   <strong>Departure:</strong>
   <%= @hitcher.departure %>
@@ -64,7 +67,3 @@
   </p>
 <% end %>
 
-
-
-<%= link_to 'Edit', edit_hitcher_path(@hitcher) %> |
-<%= link_to 'Back', current_user %>
