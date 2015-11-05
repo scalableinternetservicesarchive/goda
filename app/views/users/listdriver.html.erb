@@ -1,0 +1,18 @@
+<p class = 'notice'><% if notice %>
+<%= notice %>
+<% end %></p>
+<h1>Listing Users With Most Popular Driver Posts</h1>
+
+<table>
+<% @users.each do |user| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt>User: <%= user.name %>, driver_like_num: <%= user.driver_like_num %> </dt>
+      </dl>
+
+    </td>
+ </tr>
+<% end %>
+</table>
+

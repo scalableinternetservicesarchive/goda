@@ -70,10 +70,10 @@ button {
 <% provide(:title, "User Info") %>
 
 
-<h1>Listing Your Drivers</h1>
+<h1>Listing Drivers</h1>
 <div>
-    <button id="show">List Your Drivers</button>
-    <button id="hide">Hide Your Drivers</button>
+    <button id="show">List Drivers</button>
+    <button id="hide">Hide Drivers</button>
 </div>
 <table class="drivers">
 <% @drivers.each do |driver| %>
@@ -88,18 +88,15 @@ button {
     </td>
     <td class = "list_action">
       <%= link_to 'Show', driver %><br/>
-      <%= link_to 'Edit', edit_driver_path(driver) %><br/>
-      <%= link_to 'Destroy', driver, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
     </td>
   </tr>
 <% end %>
 </table>
 
-<h1>Listing Your Hitchers</h1>
+<h1>Listing Hitchers</h1>
 <div>
-    <button id="show1">List Your Hitchers</button>
-    <button id="hide1">Hide Your Hitchers</button>
+    <button id="show1">List Hitchers</button>
+    <button id="hide1">Hide Hitchers</button>
 </div>
 
 <table class="hitchers">
@@ -114,61 +111,37 @@ button {
     </td>
     <td  class = "list_action">
       <%= link_to 'Show', hitcher %><br/>
-      <%= link_to 'Edit', edit_hitcher_path(hitcher) %><br/>
-      <%= link_to 'Destroy', hitcher, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
     </td>
   </tr>
 <% end %>
 </table>
-
-<h1>Listing Your Rides</h1>
-<div>
-    <button id="show2">List Your Rides</button>
-    <button id="hide2">Hide Your Rides</button>
-</div>
-<table class="rides">
-<% @user.rides.each do |ride| %>
-  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-    <td class="list_description">
-      <dl>
-        <dt>Departure: <%= ride.driver.departure %></dt>
-        <dt>Destination: <%= ride.driver.destination %></dt>
-        <dt>Price: <%= ride.driver.price %></dt>
-        <dt>Depart_time: <%= ride.driver.depart_time %></dt>
-        <dt>Num: <%= ride.quantity %></dt>
-      </dl>
-    </td>
-    <td class = "list_action">
-        <%= link_to 'Show', ride.driver %><br/>
-      <%= link_to 'Edit', edit_ride_path(ride) %><br/>
-        <%= link_to 'Destroy', ride, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
-     </td>
-  </tr>
-<% end %>
-</table>
-<h1>Listing Your Takes</h1>
-<div>
-    <button id="show3">List Your Takes</button>
-    <button id="hide3">Hide Your Takes</button>
-</div>
-<table class="takes">
-<% @user.takes.each do |take| %>
-  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-    <td class="list_description">
-      <dl>
-        <dt>Departure: <%= take.hitcher.departure %></dt>
-        <dt>Destination: <%= take.hitcher.destination %></dt>
-        <dt>Depart_time: <%= take.hitcher.depart_time %></dt>
-        <dt>Num: <%= take.quantity %></dt>
-      </dl>
-    </td>
-    <td class = "list_action">
-        <%= link_to 'Show', take.hitcher %><br/>
-        <%= link_to 'Destroy', take, method: :delete,
-                  data: { confirm: 'Are you sure?' } %>
-     </td>
-  </tr>
-<% end %>
 </body>
+
+<h2>Comments</h2>
+<% @user.usercomments.each do |usercomment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= usercomment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= usercomment.body %>
+  </p>
+<% end %>
+
+
+<h2>Add a comment:</h2>
+<%= form_for([@user, @user.usercomments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
