@@ -33,15 +33,17 @@ Rails.application.routes.draw do
     post '/drivers/index', :controller => 'drivers', :action => "index"
     
     post '/hitchers/index', :controller => 'hitchers', :action => "index"
-    
-    post '/users/index', :controller => 'users', :action => "index"
-  
+
     resources :driver do
         resources :drivercomments
     end
     
     resources :hitcher do
         resources :hitchercomments
+    end
+
+    resources :user do
+        resources :usercomments
     end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -116,3 +116,32 @@ button {
 <% end %>
 </table>
 </body>
+
+<h2>Comments</h2>
+<% @user.usercomments.each do |usercomment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= usercomment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= usercomment.body %>
+  </p>
+<% end %>
+
+
+<h2>Add a comment:</h2>
+<%= form_for([@user, @user.usercomments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
