@@ -34,29 +34,31 @@
 
 <%= form_for @search, :url => "/hitchers/index" do |f|%>
  <div class="row">
-  <div class="col-lg-1">
-    <%= f.label :departure %><class="form-control" placeholder=".col-lg-1">
+  <div class="col-lg-2">
+    <%= f.label :departure %><class="form-control" placeholder=".col-lg-2">
   </div>
   <div class="col-lg-3">
     <%= f.text_field :departure, :class => "geocomplete", :placeholder => "Type in an address" %><class="form-control" placeholder=".col-lg-3">
   </div>
-  <div class="col-lg-1">
-    <%= f.label :destination %><class="form-control" placeholder=".col-lg-1">
+  <div class="col-lg-2">
+    <%= f.label :destination %><class="form-control" placeholder=".col-lg-2">
   </div>
   <div class="col-lg-3">
     <%= f.text_field :destination, :class => "geocomplete", :placeholder => "Type in an address" %><class="form-control" placeholder=".col-lg-3">
   </div>
+ </div>
 
-    <div class="col-lg-1">
-    <%= f.label :depart_time %><class="form-control" placeholder=".col-lg-1">
+ <div class="row">
+    <div class="col-lg-2">
+    <%= f.label :depart_Time %><class="form-control" placeholder=".col-lg-2">
   </div>
   <div class="col-lg-3">
     <%= f.text_field :depart_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
   </div>
 
 
-  <div class="col-lg-1">
-    <%= f.label :arrival_time %><class="form-control" placeholder=".col-lg-1">
+  <div class="col-lg-2">
+    <%= f.label :arrival_time %><class="form-control" placeholder=".col-lg-2">
   </div>
   <div class="col-lg-3">
     <%= f.text_field :arrival_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
@@ -88,7 +90,7 @@
       <div class = "user_input">
       <dt><%= button_to 'Accept this hitcher', takes_path(hitcher_id: hitcher) %></dt>
       <dt><%= button_to 'like', hitcher_likes_path(hitcher_id: hitcher) %></dt>
-      <dt><%= hitcher.like_num  %></dt>
+      <dt><%= hitcher.like_num  %> liked </dt>
       </div>
     </td>
   </tr>
