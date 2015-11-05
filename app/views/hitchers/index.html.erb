@@ -46,6 +46,23 @@
   <div class="col-lg-3">
     <%= f.text_field :destination, :class => "geocomplete", :placeholder => "Type in an address" %><class="form-control" placeholder=".col-lg-3">
   </div>
+
+    <div class="col-lg-1">
+    <%= f.label :depart_time %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :depart_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
+  </div>
+
+
+  <div class="col-lg-1">
+    <%= f.label :arrival_time %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :arrival_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
+  </div>
+  
+
   <div class="col-lg-1">
     <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
   </div>
