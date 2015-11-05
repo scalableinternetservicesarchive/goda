@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
     has_many :takes
     has_many :driver_likes
     has_many :hitcher_likes
+    has_many :usercomments    
     
 
     def total_driver

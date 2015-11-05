@@ -13,12 +13,27 @@ class UsersController < ApplicationController
 		@users = User.order(driver_like_num: :desc)
 	
     end
+    
+    def index
+        @search = Search.new(User, params[:search])
+        @users = @search.run
+    end    
 
     def listhitcher
 	
 		@users = User.order(hitcher_like_num: :desc)
 	
 	
+    end
+
+    def listall
+#    @users = User.all
+    end
+
+    def userprofile
+        @user = User.find(params[:user_id])
+        @drivers = @user.drivers
+        @hitchers = @user.hitchers
     end
 
     def new

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+function clickHandler() {
+    $('#hide').toggle();
+    $('#show').toggle();
+    $('#drivers').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show').hide();
+    $('#hide, #show').on('click', clickHandler);
+});
+</script>
+<script>
+function clickHandler1() {
+    $('#hide1').toggle();
+    $('#show1').toggle();
+    $('#hitchers').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show1').hide();
+    $('#hide1, #show1').on('click', clickHandler1);
+});
+</script>
+
+<script>
+function clickHandler2() {
+    $('#hide2').toggle();
+    $('#show2').toggle();
+    $('#rides').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show2').hide();
+    $('#hide2, #show2').on('click', clickHandler2);
+});
+</script>
+<script>
+function clickHandler3() {
+    $('#hide3').toggle();
+    $('#show3').toggle();
+    $('#takes').toggle('slow');
+}
+    
+$(document).ready(function(){
+    $('#show3').hide();
+    $('#hide3, #show3').on('click', clickHandler3);
+});
+</script>
+<style>
+button {
+    margin: 0 auto 5px auto;
+    width: 300px;
+    height: 35px;
+    border: 0 none;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+}
+</style>
+<head>
+<body>
+<% if notice %>
+  <%= notice %>
+<% end %>
+<% provide(:title, "User Info") %>
+
+
+<h1>Listing Drivers</h1>
+<div>
+    <button id="show">List Drivers</button>
+    <button id="hide">Hide Drivers</button>
+</div>
+<table class="drivers">
+<% @drivers.each do |driver| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt>Departure: <%= driver.departure %></dt>
+        <dt>Destination: <%= driver.destination %></dt>
+        <dt>Price: <%= driver.price %></dt>
+        <dt>Depart_time: <%= driver.depart_time %></dt>
+      </dl>
+    </td>
+    <td class = "list_action">
+      <%= link_to 'Show', driver %><br/>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Listing Hitchers</h1>
+<div>
+    <button id="show1">List Hitchers</button>
+    <button id="hide1">Hide Hitchers</button>
+</div>
+
+<table class="hitchers">
+<% @hitchers.each do |hitcher| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+        <dt>Departure: <%= hitcher.departure %></dt>
+        <dt>Destination: <%= hitcher.destination %></dt>
+        <dt>Depart_time: <%= hitcher.depart_time %></dt>
+      </dl>
+    </td>
+    <td  class = "list_action">
+      <%= link_to 'Show', hitcher %><br/>
+    </td>
+  </tr>
+<% end %>
+</table>
+</body>
+
+<h2>Comments</h2>
+<% @user.usercomments.each do |usercomment| %>
+  <p>
+    <strong>Commenter:</strong>
+    <%= usercomment.commenter %>
+  </p>
+ 
+  <p>
+    <strong>Comment:</strong>
+    <%= usercomment.body %>
+  </p>
+<% end %>
+
+
+<h2>Add a comment:</h2>
+<%= form_for([@user, @user.usercomments.build]) do |f| %>
+  <p>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
+  </p>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
