@@ -51,7 +51,8 @@
 
 <table>
 <% @drivers.each do |driver| %>
-  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <% if driver.user %> 
+ <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
       <dl>
     	<dt>User: <%= driver.user.name %></dt>
@@ -80,6 +81,7 @@
     </td>
 
   </tr>
+<% end %>
 <% end %>
 </table>
 </body>
