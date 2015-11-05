@@ -24,12 +24,20 @@ class HitcherLikesController < ApplicationController
   # POST /hitcher_likes
   # POST /hitcher_likes.json
   def create
-    @user = current_user
+    
     hitcher = Hitcher.find(params[:hitcher_id])
-    @hitcher_like = @user.add_hitcher_like(hitcher.id)
+    @hitcher_likes =  hitcher.hitcher_likes
+    @hitcher_like = @hitcher_likes.first
+    if !@hitcher_like.nil?
+                @hitcher_like.quantity += 1
+    else
+                @hitcher_like = hitcher_likes.build(hitcher_id: hitcher.id)
+    end
+
     hitcher.like_num = @hitcher_like.quantity
     hitcher.save 
     hitcher.user.like_num = hitcher.user.total
+    hitcher.user.hitcher_like_num = hitcher.user.total_hitcher
     hitcher.user.save(validate: false)
     
     respond_to do |format|

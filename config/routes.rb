@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   get 'list1' => 'users#list'
   get 'welcome/index'
   root 'welcome#index'
-
+  get 'listdriverlike' => 'users#listdriver'
+  get 'listhitcherlike' => 'users#listhitcher'
   get 'hitchers/index'
 
   get 'drivers/index'

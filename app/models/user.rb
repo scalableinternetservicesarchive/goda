@@ -14,6 +14,19 @@ class User < ActiveRecord::Base
     has_many :driver_likes
     has_many :hitcher_likes
     
+
+    def total_driver
+	sum = 0
+        drivers.each {|d| sum += d.like_num}
+	sum
+    end
+
+    def total_hitcher
+  	sum = 0
+        hitchers.each {|h| sum += h.like_num}
+        sum
+    end
+    
     def total
 	sum1 = 0
         sum2 = 0

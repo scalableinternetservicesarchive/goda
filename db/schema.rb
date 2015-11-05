@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104032040) do
+ActiveRecord::Schema.define(version: 20151105011928) do
 
   create_table "driver_likes", force: :cascade do |t|
     t.integer  "driver_id"
@@ -102,12 +102,14 @@ ActiveRecord::Schema.define(version: 20151104032040) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "name"
     t.string   "password_digest"
-    t.integer  "like_num",        default: 0
     t.string   "email"
+    t.integer  "like_num",         default: 0
+    t.integer  "driver_like_num",  default: 0
+    t.integer  "hitcher_like_num", default: 0
   end
 
 end
