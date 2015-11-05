@@ -1,6 +1,8 @@
-</script>
 <% provide(:title, "Driver") %>
 <p id="notice"><%= notice %></p>
+
+<h1>Driver Trip Information</h1>
+
 <p>
   <strong>User:</strong>
   <%= @driver.user.name %>
@@ -79,7 +81,7 @@
   </p>
 <% end %>
 
-
+<div class="container">
 <h2>Add a comment:</h2>
 <%= form_for([@driver, @driver.drivercomments.build]) do |f| %>
   <p>
@@ -94,6 +96,4 @@
     <%= f.submit %>
   </p>
 <% end %>
-
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
-<%= link_to 'Back', current_user %>
+</div>
