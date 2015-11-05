@@ -1,0 +1,38 @@
+<% provide(:title, "User") %>
+<% if notice %>
+    <p class = "notice"><%= notice %></p>
+<% end %>
+
+<h1>User List</h1>
+<%= form_for @search, :url => "/users/index" do |f|%>
+ <div class="row">
+  <div class="col-lg-1">
+    <%= f.label :name %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.text_field :name %><class="form-control" placeholder=".col-lg-3">
+  </div>
+ <div class="col-lg-1">
+    <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
+  </div>
+ </div>
+<% end %>
+
+<table>
+<% @users.each do |user| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+    <td class="list_description">
+      <dl>
+    	<dt>User name: <%= user.name %></dt>
+     </dl>
+
+    </td>
+    <td class = "list_action">
+      <%= link_to 'Show Details', userprofile_path(user_id: user)  %><br/>
+      <br/>
+    </td>
+
+  </tr>
+<% end %>
+</table>
+

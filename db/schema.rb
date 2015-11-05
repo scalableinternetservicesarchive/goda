@@ -106,8 +106,8 @@ ActiveRecord::Schema.define(version: 20151104032040) do
     t.datetime "updated_at",                  null: false
     t.string   "name"
     t.string   "password_digest"
-    t.integer  "like_num",        default: 0
     t.string   "email"
+    t.integer  "like_num",        default: 0
   end
 
 end
