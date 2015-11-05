@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   get 'list1' => 'users#list'
   get 'welcome/index'
   root 'welcome#index'
+  get 'listdriverlike' => 'users#listdriver'
+  get 'listhitcherlike' => 'users#listhitcher'
+
   
   # list user's information to other users
   get 'userprofile' => 'users#userprofile'
+
 
   get 'hitchers/index'
 

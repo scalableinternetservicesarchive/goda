@@ -1,7 +1,17 @@
 class UsersController < ApplicationController
    
     def list
-	@users = User.order(like_num: :desc)
+
+		@users = User.order(like_num: :desc)
+	
+
+        
+    end
+ 
+    def listdriver
+	
+		@users = User.order(driver_like_num: :desc)
+	
     end
     
     def index
@@ -9,6 +19,12 @@ class UsersController < ApplicationController
         @users = @search.run
     end    
 
+    def listhitcher
+	
+		@users = User.order(hitcher_like_num: :desc)
+	
+	
+    end
 
     def listall
 #    @users = User.all

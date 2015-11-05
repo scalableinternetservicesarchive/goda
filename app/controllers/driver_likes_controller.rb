@@ -24,12 +24,21 @@ class DriverLikesController < ApplicationController
   # POST /driver_likes
   # POST /driver_likes.json
   def create
-    @user = current_user
+    
     driver = Driver.find(params[:driver_id])
-    @driver_like = @user.add_driver_like(driver.id)
+    
+    @driver_likes =  driver.driver_likes
+    @driver_like = @driver_likes.first
+    if !@driver_like.nil?
+                @driver_like.quantity += 1
+    else
+                @driver_like = driver_likes.build(driver_id: driver.id)
+    end
+        
     driver.like_num = @driver_like.quantity
     driver.save
     driver.user.like_num = driver.user.total
+    driver.user.driver_like_num = driver.user.total_driver
     driver.user.save(validate: false)
    	
     respond_to do |format|
