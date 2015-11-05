@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     
     post '/hitchers/index', :controller => 'hitchers', :action => "index"
 
+    post 'users/index', :controller => 'users', :action => "index"    
+
     resources :driver do
         resources :drivercomments
     end
