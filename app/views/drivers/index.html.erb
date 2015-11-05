@@ -1,24 +1,47 @@
+<html>
 <% provide(:title, "Drivers") %>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-sliderAccess.js"></script>
 
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.ui.timepicker.addon/1.4.5/jquery-ui-timepicker-addon.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+ <script src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+  <!-- Geocomplete plugin -->
+  <script src="//cdn.jsdelivr.net/jquery.geocomplete/1.6.4/jquery.geocomplete.min.js"></script>
+  <script>
+      $('body').off("focus");
+      $('body').on('focus',".geocomplete",function(){
+        $(this).geocomplete();
+        });
+    </script>
+
+</head>
 <% if notice %>
   <p class="notice"><%= notice %></p>
 <% end %>
 
 <h1>Listing Driver Posts</h1>
-
+<body>
 <%= form_for @search, :url => "/drivers/index" do |f|%>
  <div class="row">
   <div class="col-lg-1">
     <%= f.label :departure %><class="form-control" placeholder=".col-lg-1">
   </div>
   <div class="col-lg-3">
-    <%= f.text_field :departure %><class="form-control" placeholder=".col-lg-3">
+    <%= f.text_field :departure, :class => "geocomplete", :placeholder => "Type in an address" %><class="form-control" placeholder=".col-lg-3">
   </div>
   <div class="col-lg-1">
     <%= f.label :destination %><class="form-control" placeholder=".col-lg-1">
   </div>
   <div class="col-lg-3">
-    <%= f.text_field :destination %><class="form-control" placeholder=".col-lg-3">
+    <%= f.text_field :destination, :class => "geocomplete", :placeholder => "Type in an address" %><class="form-control" placeholder=".col-lg-3">
   </div>
   <div class="col-lg-1">
     <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
@@ -59,4 +82,5 @@
   </tr>
 <% end %>
 </table>
-
+</body>
+</html>
