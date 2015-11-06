@@ -32,7 +32,7 @@ class DriverLikesController < ApplicationController
     if !@driver_like.nil?
                 @driver_like.quantity += 1
     else
-                @driver_like = driver_likes.build(driver_id: driver.id)
+                @driver_like = DriverLike.new(driver_id: driver.id)
     end
         
     driver.like_num = @driver_like.quantity

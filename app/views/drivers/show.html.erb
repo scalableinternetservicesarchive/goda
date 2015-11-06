@@ -86,6 +86,8 @@ $(function(){
 </script>
 </head>
 <body>
+<h1>Driver Trip Information</h1>
+
 <p>
   <strong>User:</strong>
   <%= @driver.user.name %>
@@ -178,7 +180,7 @@ Longitude: <input type="text" id="lng1" value="">
   </p>
 <% end %>
 
-
+<div>
 <h2>Add a comment:</h2>
 <%= form_for([@driver, @driver.drivercomments.build]) do |f| %>
   <p>
@@ -193,8 +195,6 @@ Longitude: <input type="text" id="lng1" value="">
     <%= f.submit %>
   </p>
 <% end %>
-
-<%= link_to 'Edit', edit_driver_path(@driver) %> |
-<%= link_to 'Back', current_user %>
+</div>
 </body>
 </html>

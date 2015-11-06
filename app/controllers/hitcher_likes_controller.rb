@@ -31,7 +31,7 @@ class HitcherLikesController < ApplicationController
     if !@hitcher_like.nil?
                 @hitcher_like.quantity += 1
     else
-                @hitcher_like = hitcher_likes.build(hitcher_id: hitcher.id)
+                @hitcher_like = HitcherLike.new(hitcher_id: hitcher.id)
     end
 
     hitcher.like_num = @hitcher_like.quantity

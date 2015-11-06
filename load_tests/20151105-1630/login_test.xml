@@ -1,0 +1,82 @@
+<?xml version="1.0"?><tsung loglevel="notice" version="1.0">
+
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers="15000"/>
+  </clients>
+
+  <servers>
+    <server host="54.174.19.216" port="80" type="tcp"/>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="1" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"/>
+    </arrivalphase>
+  </load>
+
+  <options>
+    <option name="global_ack_timeout" value="2000"/>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+    <session name="http-example" probability="100" type="ts_http">
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+     <thinktime value="2" random="true"/>
+
+           <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="random_user_num"/>
+      </setdynvars>
+
+            <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/login" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+            <request subst="true">
+        <http url="/login" version="1.1" contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;session%5Bname%5D=user%%_random_user_num%%&amp;user%5Bemail%5D=email%%_random_user_num%%%40gmail.com&amp;session%5Bpassword%5D=111111&amp;randon_email_name%%&amp;commit=Login" content_type="application/x-www-form-urlencoded" method="POST">
+      </http>
+      </request>
+      <thinktime value="2" random="true"/>
+            <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/drivers/new" version="1.1" method="GET"/>
+      </request>
+      <thinktime value="2" random="true"/>
+
+<setdynvars sourcetype="random_number" start="1" end="10">
+  <var name="random_carnumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_number" start="3" end="32">
+  <var name="random_phonenumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_string" length="7">
+  <var name="random_cartype"/>
+</setdynvars>
+<setdynvars sourcetype="random_string" length="100">
+  <var name="random_description"/>
+</setdynvars>
+
+       <request subst="true">
+        <http url="/drivers/new" version="1.1" contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;driver%5Bdeparture%5D=Los+Angeles%2C+CA%2C+United+States&amp;driver%5Bdestination%5D=Santa+Barbara%2C+CA%2C+United+States&amp;driver%5Bprice%5D=10&amp;driver%5Bdepart_time%5D=11%2F04%2F2015+22%3A46&amp;         driver%5Bestimated_arrival_time%5D=11%2F10%2F2015+00%3A00&amp;driver%5Bdescription%5D=%%_random_description%%&amp;         driver%5Bcar_type%5D=%%_random_cartype%%&amp;driver%5Bpassenger_num%5D=%%_random_carnumber%%&amp;driver%5Bcontact_info%5D=%%_random_phonenumber%%&amp;commit=Create+Driver" content_type="application/x-www-form-urlencoded" method="POST">
+        </http>
+      </request>
+
+
+    </session>
+  </sessions>
+</tsung>
