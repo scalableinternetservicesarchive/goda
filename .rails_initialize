@@ -1,5 +1,4 @@
-rake db:migrate
 rake db:seed
-RAILS_ENV=production bin/delayed_job -n 2 start
+
 
 
