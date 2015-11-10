@@ -78,7 +78,23 @@
         </http>
       </request>
 
+<thinktime value="2" random="true"/>
 
-    </session>
+<setdynvars sourcetype="random_number" start="1" end="10">
+  <var name="random_carnumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_number" start="3" end="32">
+  <var name="random_phonenumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_string" length="100">
+  <var name="random_description"/>
+</setdynvars>
+
+
+    <request subst="true">
+        <http url="/hitchers" version="1.1" contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;hitcher%5Bdeparture%5D=Los+Angeles%2C+CA%2C+United+States&amp;hitcher%5Bdestination%5D=Santa+Barbara%2C+CA%2C+United+States&amp;hitcher%5Bdepart_time%5D=11%2F04%2F2015+22%3A46&amp;         hitcher%5Barrival_time%5D=11%2F10%2F2015+00%3A00&amp;hitcher%5Bdescription%5D=%%_random_description%%&amp;         hitcher%5Bnum%5D=%%_random_carnumber%%&amp;hitcher%5Bcontact_info%5D=%%_random_phonenumber%%&amp;commit=Create+Hitcher" content_type="application/x-www-form-urlencoded" method="POST">
+        </http>
+      </request>
+</session>
   </sessions>
 </tsung>
