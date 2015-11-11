@@ -1,5 +1,6 @@
 User.delete_all
 Driver.delete_all
+Hitcher.delete_all
 place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
 place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
@@ -27,4 +28,22 @@ for i in 1..300 do
 	contact_info: "1234567",
         left: 5
 	)
+        hitcher = user.hitchers.create!(
+            departure: place1[n],
+            destination: place2[n],
+            depart_time: "10:00",
+            arrival_time: "12:30",
+            description: "aaaa",
+            num: 5,   
+            contact_info: "1234567" 
+        )
+    end
+
+for j in 301..450 do
+    user = User.create!(
+        name: username + "#{j}",
+        email: "email" + "#{j}" + "@example.com",
+        password: password,
+        password_comformation: password
+    )
 end
