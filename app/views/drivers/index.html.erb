@@ -21,7 +21,11 @@
         $(this).geocomplete();
         });
     </script>
-
+  <script>
+  $('body').on('focus',".datepicker",function(){
+    $(this).datetimepicker();
+   }); 
+  </script>
 </head>
 <% if notice %>
   <p class="notice"><%= notice %></p>
@@ -51,7 +55,7 @@
     <%= f.label :depart_time %><class="form-control" placeholder=".col-lg-2">
   </div>
   <div class="col-lg-3">
-    <%= f.text_field :depart_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
+    <%= f.text_field :depart_time, :class => "datepicker", :placeholder => "Type in an date" %><class="form-control" placeholder=".col-lg-3">
   </div>
 
 
@@ -59,7 +63,7 @@
     <%= f.label :arrival_time %><class="form-control" placeholder=".col-lg-1">
   </div>
   <div class="col-lg-3">
-    <%= f.text_field :estimated_arrival_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
+    <%= f.text_field :estimated_arrival_time, :class => "datepicker", :placeholder => "Type in an date" %><class="form-control" placeholder=".col-lg-3">
   </div>
 
   <div class="col-lg-1">
