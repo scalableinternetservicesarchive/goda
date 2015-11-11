@@ -2,7 +2,7 @@ class DriversController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :destroy]
   def index
     #  @drivers = Driver.all
-      @search  = Search.new(Driver, params[:search])
+      @search  = Search.new(Driver, params[:search], :per_page => 30000)
       @drivers = @search.run
   end
   def new
