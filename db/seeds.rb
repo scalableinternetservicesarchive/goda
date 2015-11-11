@@ -1,6 +1,6 @@
 User.delete_all
 Driver.delete_all
-place1 = ["Santa Barbara, CA, United States", "Los Angelos, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
+place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
 place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
 user_nums = (1..300).to_a
