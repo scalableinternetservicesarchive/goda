@@ -55,7 +55,7 @@ class RidesController < ApplicationController
    
    	 	respond_to do |format|
       		if @ride.save
-            BookNotifier.driverbooked(@ride).deliver
+            BookNotifier.driverbooked(@ride).deliver_later(wait: 1.minute)
         		format.html { redirect_to @ride.user, notice: 'Ride was successfully created.' }
         		format.json { render :show, status: :created, location: @ride }
         	else
