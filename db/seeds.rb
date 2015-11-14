@@ -44,6 +44,6 @@ for j in 301..450 do
         name: username + "#{j}",
         email: "email" + "#{j}" + "@example.com",
         password: password,
-        password_comformation: password
+        password_confirmation: password
     )
 end
