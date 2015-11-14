@@ -44,7 +44,12 @@
       <thinktime value="2" random="true"/>
 
             <request subst="true">
-        <http url="/login" version="1.1" contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;session%5Bname%5D=user%%_random_user_num%%&amp;user%5Bemail%5D=email%%_random_user_num%%%40gmail.com&amp;session%5Bpassword%5D=111111&amp;randon_email_name%%&amp;commit=Login" content_type="application/x-www-form-urlencoded" method="POST">
+        <http url="/login" version="1.1" contents="utf8=%E2%9C%93&amp;
+        authenticity_token=%%_authenticity_token%%&amp;
+        session%5Bname%5D=user%%_random_user_num%%&amp;
+        user%5Bemail%5D=email%%_random_user_num%%%40gmail.com&amp;
+        session%5Bpassword%5D=111111&amp;randon_email_name%%&amp;
+        commit=Login" content_type="application/x-www-form-urlencoded" method="POST">
       </http>
       </request>
       <thinktime value="2" random="true"/>
