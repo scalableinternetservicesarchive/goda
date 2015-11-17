@@ -1,9 +1,11 @@
 class DriversController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :destroy]
   def index
+    if stale?([Driver.all])
     #  @drivers = Driver.all
       @search  = Search.new(Driver, params[:search], :per_page => 30000)
       @drivers = @search.run
+    end
   end
   def new
      @driver = Driver.new
@@ -55,7 +57,9 @@ class DriversController < ApplicationController
   def show
      #@drivers = current_user.drivers
      @driver = Driver.find(params[:id])
+     expires_in 3.minutes, :public => true
      @rides = @driver.rides.all
+     expires_in 3.minutes, :public => true
   end
 
   private 

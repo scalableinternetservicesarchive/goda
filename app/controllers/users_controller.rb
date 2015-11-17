@@ -1,30 +1,26 @@
 class UsersController < ApplicationController
    
     def list
-
 		@users = User.order(like_num: :desc)
-	
-
-        
+        expires_in 3.minutes, :public => true
     end
  
     def listdriver
-	
 		@users = User.order(driver_like_num: :desc)
-	
+        expires_in 3.minutes, :public => true
     end
     
     def index
-        @search = Search.new(User, params[:search], :per_page => 10000)
+        if stale?([User.all])
+          @search = Search.new(User, params[:search], :per_page => 10000)
           @users = @search.run
     #     @users = User.all
+        end
     end    
 
     def listhitcher
-	
 		@users = User.order(hitcher_like_num: :desc)
-	
-	
+        expires_in 3.minutes, :public => true
     end
 
     def listall
@@ -35,6 +31,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:user_id])
         @drivers = @user.drivers
         @hitchers = @user.hitchers
+        expires_in 3.minutes, :public => true
     end
 
     def new
@@ -44,6 +41,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @drivers = @user.drivers
         @hitchers = @user.hitchers
+        expires_in 3.minutes, :public => true
     end
     def create
         @user = User.new(user_params)

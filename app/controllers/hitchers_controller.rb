@@ -1,9 +1,11 @@
 class HitchersController < ApplicationController
   before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
-    @search = Search.new(Hitcher, params[:search], :per_page => 30000) 
-#    @hitchers = Hitcher.all
-    @hitchers = @search.run
+    if stale?([Hitcher.all])
+       @search = Search.new(Hitcher, params[:search], :per_page => 30000) 
+#      @hitchers = Hitcher.all
+       @hitchers = @search.run
+    end
   end
   def new
      @hitcher = Hitcher.new
@@ -40,6 +42,7 @@ class HitchersController < ApplicationController
 
   def show
      @hitcher = Hitcher.find(params[:id])
+     expires_in 3.minutes, :public => true
   end
 
   def destroy
