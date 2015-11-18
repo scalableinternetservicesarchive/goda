@@ -16,7 +16,7 @@
  </div>
 <% end %>
 
-
+<% cache(cache_key_for_user_table) do %>
 <table>
 <% @users.each do |user| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
@@ -34,6 +34,7 @@
   </tr>
 <% end %>
 </table>
+<% end %>
 <br />
   <% if @search.pages > 1 %>
     <p>There are <%= @search.pages %> pages in total </p>

@@ -69,7 +69,7 @@
   </div>
  </div>
 <% end %>
-
+<% cache(cache_key_for_hitcher_table) do %>
 <table>
 <% @hitchers.each do |hitcher| %>
   <% if hitcher.user %>
@@ -96,5 +96,6 @@
  <% end %>
 <% end %>
 </table>
+<% end %>
 </body>
 </html>

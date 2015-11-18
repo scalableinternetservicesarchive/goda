@@ -70,9 +70,9 @@
   </div>
  </div>
 <% end %>
-
+<% cache(cache_key_for_driver_table) do %>
 <table>
-<% @drivers.each do |driver| %>
+ <% @drivers.each do |driver| %>
     <% if driver.user %> 
  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -106,5 +106,6 @@
 <% end %>
 <% end %>
 </table>
+<% end %>
 </body>
 </html>
