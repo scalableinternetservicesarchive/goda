@@ -37,7 +37,7 @@ class TakesController < ApplicationController
         	@take.quantity = hitcher.num
    		respond_to do |format|
      	    	if @take.save
-                BookNotifier.hitcherbooked(@take).deliver
+                BookNotifier.hitcherbooked(@take).deliver_later(wait: 1.minute)
                  	format.html { redirect_to @user, notice: 'Take was successfully created.' }
                  	format.json { render :show, status: :created, location: @take }
                 else
