@@ -1,0 +1,554 @@
+<?xml version="1.0"?>
+<!DOCTYPE tsung SYSTEM "/home/ec2-user/opt/tsung-1.5.0/share/tsung/tsung-1.0.dtd">
+<tsung loglevel="notice" version="1.0">
+
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers="15000"/>
+  </clients>
+
+  <servers>
+    <server host="54.173.135.77" port="80" type="tcp"/>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users interarrival="2" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users interarrival="1" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users interarrival="0.5" unit="second"/>
+    </arrivalphase>
+  </load>
+
+  <options>
+    <option name="global_ack_timeout" value="2000"/>
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+
+    <session name="sign-up" probability="10" type="ts_http">
+
+<!--home page-->
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+     <thinktime value="2" random="true"/>
+
+<!--search driver-->
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/drivers" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+       <http url="/drivers/index" 
+  method="POST" version="1.1" 
+  contents="utf8=%E2%9C%93&amp;
+  authenticity_token=%%_authenticity_token%%&amp;
+  search%5Bdeparture%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+  search%5Bdestination%5D=Arizona%2C+United+States&amp;
+  search%5Bdepart_time%5D=12%3A30&amp;
+  search%5Bestimated_arrival_time%5D=20%3A30&amp;
+  commit=Search">
+       </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+<!-- randomly choose a driver-->
+       <setdynvars sourcetype="random_number" start="1" end="300">
+        <var name="random_driver" />
+      </setdynvars>
+
+<!--  show detail of this driver-->
+      <request  subst="true">
+        <http url='/drivers/%%_random_driver%%' version="1.1" method="GET"/>
+      </request>
+
+<!--new user sign up-->
+      <request>
+        <http url="/signup" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+       <setdynvars sourcetype="random_number" start="1000" end="3000">
+        <var name="random_user_num" />
+      </setdynvars>
+
+      <request subst="true">
+        <http url="/users" method="POST" version="1.1" 
+  contents="utf8=%E2%9C%93&amp;
+  user%5Bname%5D=new_user_%%_random_user_num%%&amp;
+  user%5Bemail%5D=new_user_%%_random_user_num%%%40example.com&amp;
+  user%5Bpassword%5D=111111&amp;
+  user%5Bpassword_confirmation%5D=111111&amp;
+  commit=Create+my+account" 
+  content_type="application/x-www-form-urlencoded">
+      </http>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!--book the driver (id = random_driver) -->
+      <request>
+        <http url="/drivers" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+       <request subst="true">
+        <http url='/rides?driver_id=%%_random_driver%%' 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    my_input=1&amp;commit=Book+a+Ride" 
+    content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+
+    </session>
+<!-- end of session "sign-up" -->
+
+   <session name="book-hitcher" probability="10" type="ts_http">
+
+<!--home page-->
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!--login-->
+      <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="user_num"/>
+      </setdynvars>
+
+      <request>
+        <http url="/login" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="/login" 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    session%5Bname%5D=user%%_user_num%%&amp;
+    session%5Bemail%5D=&amp;
+    session%5Bpassword%5D=111111&amp;
+    commit=Login" 
+    content_type="application/x-www-form-urlencoded">
+      </http>
+      </request>
+
+<!--search hitcher-->
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/hitchers" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+       <http url="/hitchers/index" 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    authenticity_token=%%_authenticity_token%%&amp;
+    search%5Bdeparture%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+    search%5Bdestination%5D=Arizona%2C+United+States&amp;
+    search%5Bdepart_time%5D=12%3A30&amp;
+    search%5Barrival_time%5D=20%3A30&amp;
+    commit=Search">
+       </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+<!-- randomly choose a hitcher-->
+       <setdynvars sourcetype="random_number" start="1" end="300">
+        <var name="random_hitcher" />
+      </setdynvars>
+
+<!--  show detail of this hitcher-->
+      <request  subst="true">
+        <http url='/hitchers/%%_random_hitcher%%' version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!-- accept this hitcher-->
+
+      <request subst="true">
+        <dyn_variable name="authenticity_token"/>
+        <http url='/takes?hitcher_id=%%_random_hitcher%%' version="1.1" method="GET"/>
+      </request>
+     <thinktime value="2" random="true"/>
+     
+       <request subst="true">
+        <http url='/takes?hitcher_id=%%_random_hitcher%%' 
+  method="POST" version="1.1" 
+  contents="authenticity_token=%%_authenticity_token%%" 
+  content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+      <request subst="true">
+        <dyn_variable name="authenticity_token"/>
+        <http url='/hitcher_likes?hitcher_id=%%_random_hitcher%%' 
+  version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+       <request subst="true">
+        <http url='/hitcher_likes?hitcher_id=%%_random_hitcher%%' 
+  method="POST" version="1.1" 
+  contents="authenticity_token=%%_authenticity_token%%" 
+  content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+      <thinktime value="2" random="true"/>
+
+<!--add a comment on this hitcher-->
+      
+      <setdynvars sourcetype="random_string" length="100">
+         <var name="random_comment"/>
+      </setdynvars>
+
+
+      <request subst="true">
+        <http url='/hitcher/%%_random_hitcher%%/hitchercomments'  
+    method="POST" version="1.1"
+    contents="utf8=%E2%9C%93&amp;hitchercomment%5Bcommenter%5D=%%_random_comment%%&amp;
+    hitchercomment%5Bbody%5D=%%_random_comment%%&amp;commit=Create+Hitchercomment"  
+    content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+    </session>
+<!-- end of session "book-hitcher" -->
+
+
+
+    <session name="post-driver" probability="30" type="ts_http">
+
+<!--home page-->
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!--login-->
+      <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="user_num"/>
+      </setdynvars>
+
+      <request>
+        <http url="/login" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="/login" 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    session%5Bname%5D=user%%_user_num%%&amp;
+    session%5Bemail%5D=&amp;
+    session%5Bpassword%5D=111111&amp;
+    commit=Login" 
+    content_type="application/x-www-form-urlencoded">
+      </http>
+      </request>
+
+<!--search hitcher-->
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/hitchers" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+       <http url="/hitchers/index" 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    authenticity_token=%%_authenticity_token%%&amp;
+    search%5Bdeparture%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+    search%5Bdestination%5D=Arizona%2C+United+States&amp;
+    search%5Bdepart_time%5D=12%3A30&amp;
+    search%5Barrival_time%5D=20%3A30&amp;
+    commit=Search">
+       </http>
+      </request>
+
+      <thinktime value="5" random="true"/>
+
+<!-- post a new driver -->
+<!--new driver-->
+
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/drivers/new" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+<setdynvars sourcetype="random_number" start="1" end="10">
+  <var name="random_carnumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_number" start="3" end="32">
+  <var name="random_phonenumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_string" length="7">
+  <var name="random_cartype"/>
+</setdynvars>
+<setdynvars sourcetype="random_string" length="100">
+  <var name="random_description"/>
+</setdynvars>
+
+       <request subst="true">
+        <http url="/drivers" method="POST" version="1.1" 
+  contents="utf8=%E2%9C%93&amp;authenticity_token=%%_authenticity_token%%&amp;
+  driver%5Bdeparture%5D=Los+Angeles%2C+CA%2C+United+States&amp;
+  driver%5Bdestination%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+  driver%5Bprice%5D=10&amp;
+  driver%5Bdepart_time%5D=11%2F04%2F2015+22%3A46&amp;         
+  driver%5Bestimated_arrival_time%5D=11%2F10%2F2015+00%3A00&amp;
+  driver%5Bdescription%5D=%%_random_description%%&amp;         
+  driver%5Bcar_type%5D=%%_random_cartype%%&amp;
+  driver%5Bpassenger_num%5D=%%_random_carnumber%%&amp;
+  driver%5Bcontact_info%5D=%%_random_phonenumber%%&amp;
+  commit=Create+Driver" 
+  content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+
+    </session>
+<!-- end of session "post-driver" -->
+
+   <session name="book-driver" probability="40" type="ts_http">
+
+<!--home page-->
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!--login-->
+      <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="user_num"/>
+      </setdynvars>
+
+      <request>
+        <http url="/login" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="/login" 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    session%5Bname%5D=user%%_user_num%%&amp;
+    session%5Bemail%5D=&amp;
+    session%5Bpassword%5D=111111&amp;
+    commit=Login" 
+    content_type="application/x-www-form-urlencoded">
+      </http>
+      </request>
+
+<!--search driver-->
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/drivers" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+       <http url="/drivers/index" 
+  method="POST" version="1.1" 
+  contents="utf8=%E2%9C%93&amp;
+  authenticity_token=%%_authenticity_token%%&amp;
+  search%5Bdeparture%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+  search%5Bdestination%5D=Arizona%2C+United+States&amp;
+  search%5Bdepart_time%5D=12%3A30&amp;
+  search%5Bestimated_arrival_time%5D=20%3A30&amp;
+  commit=Search">
+       </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+<!-- randomly choose a driver-->
+       <setdynvars sourcetype="random_number" start="1" end="300">
+        <var name="random_driver" />
+      </setdynvars>
+
+<!--  show detail of this driver-->
+      <request  subst="true">
+        <http url='/drivers/%%_random_driver%%' version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!--book the driver (id = random_driver) -->
+      <request>
+        <http url="/drivers" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+       <request  subst="true">
+        <http url='/rides?driver_id=%%_random_driver%%' 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    my_input=1&amp;commit=Book+a+Ride" 
+    content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+<!--like this driver-->
+     <thinktime value="1" random="false"/>
+
+      <request subst="true">
+        <dyn_variable name="authenticity_token"/>
+        <http url='/driver_likes?driver_id=%%_random_driver%%' version="1.1" method="GET"/>
+      </request>
+
+       <request subst="true">
+        <http url='/driver_likes?driver_id=%%_random_driver%%' 
+    method="POST" version="1.1" 
+    contents="authenticity_token=%%_authenticity_token%%" 
+    content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+<!--add a comment on this driver-->      
+      <setdynvars sourcetype="random_string" length="100">
+         <var name="random_comment"/>
+      </setdynvars>
+
+
+      <request subst="true">
+        <http url='/driver/%%_random_driver%%/drivercomments'  
+  method="POST" version="1.1"
+  contents="utf8=%E2%9C%93&amp;drivercomment%5Bcommenter%5D=%%_random_comment%%&amp;
+  drivercomment%5Bbody%5D=%%_random_comment%%&amp;commit=Create+Drivercomment"  
+  content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+    </session>
+<!-- end of session "book-driver" -->
+
+    <session name="post-hitcher" probability="10" type="ts_http">
+
+<!--home page-->
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+     <thinktime value="2" random="true"/>
+
+<!--login-->
+      <setdynvars sourcetype="random_number" start="1" end="150">
+        <var name="user_num"/>
+      </setdynvars>
+
+      <request>
+        <http url="/login" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+        <http url="/login" 
+    method="POST" version="1.1" 
+    contents="utf8=%E2%9C%93&amp;
+    session%5Bname%5D=user%%_user_num%%&amp;
+    session%5Bemail%5D=&amp;
+    session%5Bpassword%5D=111111&amp;
+    commit=Login" 
+    content_type="application/x-www-form-urlencoded">
+      </http>
+      </request>
+
+<!--search driver-->
+      <request>
+        <dyn_variable name="authenticity_token"/>
+        <http url="/drivers" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+       <http url="/drivers/index" 
+  method="POST" version="1.1" 
+  contents="utf8=%E2%9C%93&amp;
+  authenticity_token=%%_authenticity_token%%&amp;
+  search%5Bdeparture%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+  search%5Bdestination%5D=Arizona%2C+United+States&amp;
+  search%5Bdepart_time%5D=12%3A30&amp;
+  search%5Bestimated_arrival_time%5D=20%3A30&amp;
+  commit=Search">
+       </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+<!--post a new hitcher-->
+
+      <request>
+        <http url="/hitchers/new" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+<setdynvars sourcetype="random_number" start="1" end="10">
+  <var name="random_carnumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_number" start="3" end="32">
+  <var name="random_phonenumber"/>
+</setdynvars>
+<setdynvars sourcetype="random_string" length="100">
+  <var name="random_description"/>
+</setdynvars>
+
+      <request subst="true">
+        <http url="/hitchers" method="POST" version="1.1" 
+  contents="utf8=%E2%9C%93&amp;
+  hitcher%5Bdeparture%5D=Los+Angeles%2C+CA%2C+United+States&amp;
+  hitcher%5Bdestination%5D=Santa+Barbara%2C+CA%2C+United+States&amp;
+  hitcher%5Bdepart_time%5D=11%2F04%2F2015+22%3A46&amp;         
+  hitcher%5Barrival_time%5D=11%2F10%2F2015+00%3A00&amp;
+  hitcher%5Bdescription%5D=%%_random_description%%&amp;         
+  hitcher%5Bnum%5D=%%_random_carnumber%%&amp;
+  hitcher%5Bcontact_info%5D=%%_random_phonenumber%%&amp;
+  commit=Create+Hitcher" 
+  content_type="application/x-www-form-urlencoded">
+        </http>
+      </request>
+
+
+
+    </session>
+<!-- end of session "post-hitcher" -->
+
+  </sessions>
+</tsung>
+
+
