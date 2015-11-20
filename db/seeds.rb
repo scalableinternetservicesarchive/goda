@@ -7,8 +7,8 @@ username = "user"
 user_nums = (1..3000).to_a
 password = "111111"
 drivername = "driver"
-
-for i in 1..1000 do
+ActiveRecord::Base.transaction do
+    for i in 1..1000 do
 	user  = User.create!(
 	name: username+"#{i}",
         email: "email"+"#{i}"+"@example.com",
@@ -38,3 +38,4 @@ for i in 1..1000 do
             contact_info: "1234567" 
         )
     end
+end
