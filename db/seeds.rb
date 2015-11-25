@@ -4,11 +4,11 @@ Hitcher.delete_all
 place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
 place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
-user_nums = (1..300).to_a
+user_nums = (1..3000).to_a
 password = "111111"
 drivername = "driver"
-
-for i in 1..300 do
+ActiveRecord::Base.transaction do
+    for i in 1..3000 do
 	user  = User.create!(
 	name: username+"#{i}",
         email: "email"+"#{i}"+"@example.com",
@@ -38,12 +38,4 @@ for i in 1..300 do
             contact_info: "1234567" 
         )
     end
-
-for j in 301..450 do
-    user = User.create!(
-        name: username + "#{j}",
-        email: "email" + "#{j}" + "@example.com",
-        password: password,
-        password_confirmation: password
-    )
 end
