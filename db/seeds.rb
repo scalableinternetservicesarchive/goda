@@ -8,34 +8,43 @@ user_nums = (1..3000).to_a
 password = "111111"
 drivername = "driver"
 ActiveRecord::Base.transaction do
-    for i in 1..3000 do
-	user  = User.create!(
-	name: username+"#{i}",
-        email: "email"+"#{i}"+"@example.com",
-	password: password,
-        password_confirmation: password
-	)
-	n = i%4
-        driver = user.drivers.create!(
-	departure: place1[n],
-        destination: place2[n],
-	price: 100,
-	depart_time: "12:30",
-	estimated_arrival_time: "20:30",
-	description: "aaaaaa",
-	car_type: "BMW",
-	passenger_num: 5,
-	contact_info: "1234567",
-        left: 5
-	)
-        hitcher = user.hitchers.create!(
-            departure: place1[n],
-            destination: place2[n],
-            depart_time: "10:00",
-            arrival_time: "12:30",
-            description: "aaaa",
-            num: 5,   
-            contact_info: "1234567" 
-        )
-    end
+start_time = Time.now
+  for i in 1..10000 do
+    inserts = []  
+    inserts << "('#{username}'+'#{i}', 'email'+'#{i}'+'@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
+  
+  sql = "INSERT INTO users (name, email, password_digest, created_at, updated_at) VALUES #{inserts.join(", ")}"
+  User.connection.execute sql
+  end
+end_time = Time.now
+elapse = (end_time - start_time)
+puts "10000 buyers in #{elapse.round(4)}s!"
+
+start_time = Time.now
+  for i in 1..10000 do
+    n = i%4
+    inserts = []
+    inserts << "('#{place1[n]}', '#{place2[n]}', '100', '12:30', '20:30', 'aaaaaa', 'BMW', '5', '1234567', '#{Date.today}', '#{Date.today}', '#{i}', '#{i}', '5')"
+
+  sql = "INSERT INTO drivers (departure, destination, price, depart_time, estimated_arrival_time, description, car_type, passenger_num, contact_info, created_at, updated_at, userid, user_id, left) VALUES #{inserts.join(", ")}"
+  Driver.connection.execute sql
+  end
+end_time = Time.now
+elapse = (end_time - start_time)
+puts "10000 Drivers in #{elapse.round(4)}s!"
+
+
+start_time = Time.now
+  for i in 1..10000 do
+    n = i%4
+    inserts = []
+    inserts << "('#{place1[n]}', '#{place2[n]}', '12:30', '20:30', 'aaaaaa', '5', '1234567', '#{Date.today}', '#{Date.today}', '#{i}')"
+
+  sql = "INSERT INTO hitchers (departure, destination, depart_time, arrival_time, description, num, contact_info, created_at, updated_at, user_id) VALUES #{inserts.join(", ")}"
+  Hitcher.connection.execute sql
+  end
+end_time = Time.now
+elapse = (end_time - start_time)
+puts "10000 Hitchers in #{elapse.round(4)}s!"
+
 end
