@@ -1,7 +1,7 @@
 class HitchersController < ApplicationController
   before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
-    @search = Search.new(Hitcher, params[:search], :per_page => 30000) 
+    @search = Search.new(Hitcher.includes(:user), params[:search], :per_page => 30000) 
 #    @hitchers = Hitcher.all
     @hitchers = @search.run
   end
