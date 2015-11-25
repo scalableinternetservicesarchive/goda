@@ -2,7 +2,7 @@ class DriversController < ApplicationController
   before_action :logged_in_user, only: [:create, :edit, :destroy]
   def index
     #  @drivers = Driver.all
-      @search  = Search.new(Driver, params[:search], :per_page => 30000)
+      @search  = Search.new(Driver.includes(:user), params[:search], :per_page => 30000)
       @drivers = @search.run
   end
   def new
@@ -54,8 +54,8 @@ class DriversController < ApplicationController
 
   def show
      #@drivers = current_user.drivers
-     @driver = Driver.includes(:departure).includes(:destination).includes(user: [:name]).includes(user: [:updated_at]).includes(:price).includes(:depart_time).includes(:estimated_arrival_time).includes(:car_type).includes(:left).includes(:contact_info).includes(:description).includes(drivercomments: [:commenter, :body]).find(params[:id])
-     @rides = @driver.rides.includes(user: [:name]).includes(:quantity).all
+     @driver = Driver.includes(:drivercomments).find(params[:id])
+     @rides = @driver.rides.includes(:user).all
   end
 
   private 

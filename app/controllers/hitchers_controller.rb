@@ -1,7 +1,7 @@
 class HitchersController < ApplicationController
   before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
-    @search = Search.new(Hitcher, params[:search], :per_page => 30000) 
+    @search = Search.new(Hitcher.includes(:user), params[:search], :per_page => 30000) 
 #    @hitchers = Hitcher.all
     @hitchers = @search.run
   end
@@ -39,7 +39,7 @@ class HitchersController < ApplicationController
 
 
   def show
-     @hitcher = Hitcher.includes(:departure).includes(:destination).includes(:depart_time).includes(:arrival_time).includes(:num).includes(:contact_info).includes(hitchercomments: [:commenter, :body]).find(params[:id])
+     @hitcher = Hitcher.includes(:hitchercomments).find(params[:id])
   end
 
   def destroy

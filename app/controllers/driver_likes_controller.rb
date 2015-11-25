@@ -79,7 +79,7 @@ class DriverLikesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_driver_like
-      @driver_like = DriverLike.includes(:driver).find(params[:id])
+      @driver_like = DriverLike.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
