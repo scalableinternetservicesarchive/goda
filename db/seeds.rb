@@ -21,7 +21,7 @@ user  = User.create!(
 
 ActiveRecord::Base.transaction do
 start_time = Time.now
-  for i in 1..1000 do
+  1000.times do |i|
     inserts = []  
     inserts << "('#{username}'+'#{i}', 'email'+'#{i}'+'@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
   
