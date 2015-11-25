@@ -54,8 +54,8 @@ class DriversController < ApplicationController
 
   def show
      #@drivers = current_user.drivers
-     @driver = Driver.find(params[:id])
-     @rides = @driver.rides.all
+     @driver = Driver.includes(:departure).includes(:destination).includes(user: [:name]).includes(user: [:updated_at]).includes(:price).includes(:depart_time).includes(:estimated_arrival_time).includes(:car_type).includes(:left).includes(:contact_info).includes(:description).includes(drivercomments: [:commenter, :body]).find(params[:id])
+     @rides = @driver.rides.includes(user: [:name]).includes(:quantity).all
   end
 
   private 

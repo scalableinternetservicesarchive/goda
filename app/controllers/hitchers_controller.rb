@@ -39,7 +39,7 @@ class HitchersController < ApplicationController
 
 
   def show
-     @hitcher = Hitcher.find(params[:id])
+     @hitcher = Hitcher.includes(:departure).includes(:destination).includes(:depart_time).includes(:arrival_time).includes(:num).includes(:contact_info).includes(hitchercomments: [:commenter, :body]).find(params[:id])
   end
 
   def destroy
