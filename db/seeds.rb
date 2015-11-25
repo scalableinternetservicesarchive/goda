@@ -21,7 +21,7 @@ user  = User.create!(
 
 ActiveRecord::Base.transaction do
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..1000 do
     inserts = []  
     inserts << "('#{username}'+'#{i}', 'email'+'#{i}'+'@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
   
@@ -33,7 +33,7 @@ elapse = (end_time - start_time)
 puts "10000 users in #{elapse.round(4)}s!"
 
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..1000 do
     n = i%4
     inserts = []
     inserts << "('#{place1[n]}', '#{place2[n]}', 100, '12:30', '20:30', 'aaaaaa', 'BMW', 5, '1234567', '#{Date.today}', '#{Date.today}', #{user.id}, #{user.id}, 5)"
@@ -47,7 +47,7 @@ puts "10000 Drivers in #{elapse.round(4)}s!"
 
 
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..1000 do
     n = i%4
     inserts = []
     inserts << "('#{place1[n]}', '#{place2[n]}', '12:30', '20:30', 'aaaaaa', 5, '1234567', '#{Date.today}', '#{Date.today}', #{i})"
