@@ -1,4 +1,4 @@
-ll
+Driver.delete_all
 Hitcher.delete_all
 User.delete_all
 place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
