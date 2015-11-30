@@ -1,8 +1,8 @@
 Driver.delete_all
 Hitcher.delete_all
 User.delete_all
-place1 = ["Santa Barbara CA United States", "Los Angeles CA United States","San Diego CA United States","San Francisco CA United States"]
-place2 = ["Arizona United States", "Utah United States", "Illinois United States","San Antonio TX United States"]
+place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
+place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
 password = "111111"
 drivername = "driver"
