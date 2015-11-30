@@ -21,8 +21,8 @@ start_time = Time.now
     inserts = []  
     inserts << "('#{username[i]}', '#{username[i]}@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
   
-  sql = "INSERT INTO users (name, email, password_digest, created_at, updated_at) VALUES #{inserts.join(", ")}"
-  User.connection.execute sql
+    sql = "INSERT INTO users (name, email, password_digest, created_at, updated_at) VALUES #{inserts.join(", ")}"
+    User.connection.execute sql
   end
 end_time = Time.now
 elapse = (end_time - start_time)
@@ -34,8 +34,8 @@ start_time = Time.now
     inserts = []
     inserts << "('#{place1[n]}', '#{place2[n]}', 100, '12:30', '20:30', 'aaaaaa', 'BMW', 5, '1234567', '#{Date.today}', '#{Date.today}', #{user.id}, #{user.id}, 5)"
 
-  sql = "INSERT INTO drivers (departure, destination, price, depart_time, estimated_arrival_time, description, car_type, passenger_num, contact_info, created_at, updated_at, userid, user_id, left) VALUES #{inserts.join(", ")}"
-  Driver.connection.execute sql
+    sql = "INSERT INTO drivers (departure, destination, price, depart_time, estimated_arrival_time, description, car_type, passenger_num, contact_info, created_at, updated_at, userid, user_id, left) VALUES #{inserts.join(", ")}"
+    Driver.connection.execute sql
   end
 end_time = Time.now
 elapse = (end_time - start_time)
@@ -48,8 +48,8 @@ start_time = Time.now
     inserts = []
     inserts << "('#{place1[n]}', '#{place2[n]}', '12:30', '20:30', 'aaaaaa', 5, '1234567', '#{Date.today}', '#{Date.today}', #{i})"
 
-  sql = "INSERT INTO hitchers (departure, destination, depart_time, arrival_time, description, num, contact_info, created_at, updated_at, user_id) VALUES #{inserts.join(", ")}"
-  Hitcher.connection.execute sql
+    sql = "INSERT INTO hitchers (departure, destination, depart_time, arrival_time, description, num, contact_info, created_at, updated_at, user_id) VALUES #{inserts.join(", ")}"
+    Hitcher.connection.execute sql
   end
 end_time = Time.now
 elapse = (end_time - start_time)
