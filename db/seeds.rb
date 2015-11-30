@@ -7,6 +7,7 @@ username = "user"
 user_nums = (1..3000).to_a
 password = "111111"
 drivername = "driver"
+usernames = (1..10000).to_a
 user  = User.create!(
   name: "postuser",
         email: "postemail@example.com",
@@ -18,7 +19,7 @@ ActiveRecord::Base.transaction do
 start_time = Time.now
   for i in 1..10000 do
     inserts = []  
-    inserts << "('#{username}#{i}', 'email#{i}@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
+    inserts << "('#{username[i]}', '#{username[i]}@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
   
   sql = "INSERT INTO users (name, email, password_digest, created_at, updated_at) VALUES #{inserts.join(", ")}"
   User.connection.execute sql
