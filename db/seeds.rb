@@ -17,17 +17,17 @@ user  = User.create!(
 ActiveRecord::Base.transaction do
 start_time = Time.now
   inserts = []
-  for i in 1..10000 do
+  for i in 1..1000 do
     inserts << "('#{usernames[i]}', '#{usernames[i]}@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
   end
   sql = "INSERT INTO users (name, email, password_digest, created_at, updated_at) VALUES #{inserts.join(", ")}"
   User.connection.execute sql
 end_time = Time.now
 elapse = (end_time - start_time)
-puts "10000 users in #{elapse.round(4)}s!"
+puts "1000 users in #{elapse.round(4)}s!"
 
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..1000 do
     inserts = []
     n = i%4
     inserts << "('#{place1[n]}', '#{place2[n]}', 100, '12', '20', 'aaaaaa', 'BMW', 5, '1234567', '#{Date.today}', '#{Date.today}', #{user.id}, #{user.id}, 5, 0)"
@@ -37,10 +37,10 @@ start_time = Time.now
   end
 end_time = Time.now
 elapse = (end_time - start_time)
-puts "10000 Drivers in #{elapse.round(4)}s!"
+puts "1000 Drivers in #{elapse.round(4)}s!"
 
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..1000 do
     inserts = []
     n = i%4
     inserts << "('#{place1[n]}', '#{place2[n]}', '12:30', '20:30', 'aaaaaa', 5, '1234567', '#{Date.today}', '#{Date.today}', #{user.id})"
@@ -50,6 +50,6 @@ start_time = Time.now
   end
 end_time = Time.now
 elapse = (end_time - start_time)
-puts "10000 Hitchers in #{elapse.round(4)}s!"
+puts "1000 Hitchers in #{elapse.round(4)}s!"
 
 end
