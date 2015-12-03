@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     end
     
     def index
-        @search = Search.new(User, params[:search], :per_page => 10000)
+        @search = Search.new(User, params[:search], :per_page => 20)
           @users = @search.run
     #     @users = User.all
     end    
