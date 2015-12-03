@@ -4,14 +4,14 @@ User.delete_all
 place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
 place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
-password = "111111"
+password = User.new.send(:password_digest, '111111')
 drivername = "driver"
 usernames = Array.new(10000){ |i| "user" + (i+1).to_s }
 user  = User.create!(
   name: "postuser",
         email: "postemail@example.com",
-  password: password,
-        password_confirmation: password
+  password: "111111",
+        password_confirmation: "111111"
   )
 
 ActiveRecord::Base.transaction do
