@@ -16,8 +16,16 @@ class UsersController < ApplicationController
     
     def index
         @search = Search.new(User, params[:search], :per_page => 20)
+        @flag = false
+        
+        if params[:search] == nil
+             @users = User.paginate(page: params[:page], per_page: 20)
+            @flag = true
+        else
+            @flag = false
           @users = @search.run
     #     @users = User.all
+        end
     end    
 
     def listhitcher

@@ -43,6 +43,11 @@
   </tr>
 <% end %>
 </table>
+
+<% if @flag %>
+<%= will_paginate @drivers %>
+<% end %>
+
 <br />
   <% if @search.pages > 1 %>
     <p>There are <%= @search.pages %> pages in total </p>
