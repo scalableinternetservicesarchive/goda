@@ -64,7 +64,7 @@
       <thinktime value="2" random="true"/>
 
 <!-- randomly choose a driver-->
-       <setdynvars sourcetype="random_number" start="1" end="300">
+       <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="random_driver" />
       </setdynvars>
 
@@ -128,7 +128,7 @@
      <thinktime value="2" random="true"/>
 
 <!--login-->
-      <setdynvars sourcetype="random_number" start="1" end="150">
+      <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="user_num"/>
       </setdynvars>
 
@@ -174,7 +174,7 @@
       <thinktime value="2" random="true"/>
 
 <!-- randomly choose a hitcher-->
-       <setdynvars sourcetype="random_number" start="1" end="300">
+       <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="random_hitcher" />
       </setdynvars>
 
@@ -249,7 +249,7 @@
      <thinktime value="2" random="true"/>
 
 <!--login-->
-      <setdynvars sourcetype="random_number" start="1" end="150">
+      <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="user_num"/>
       </setdynvars>
 
@@ -348,7 +348,7 @@
      <thinktime value="2" random="true"/>
 
 <!--login-->
-      <setdynvars sourcetype="random_number" start="1" end="150">
+      <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="user_num"/>
       </setdynvars>
 
@@ -394,7 +394,7 @@
       <thinktime value="2" random="true"/>
 
 <!-- randomly choose a driver-->
-       <setdynvars sourcetype="random_number" start="1" end="300">
+       <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="random_driver" />
       </setdynvars>
 
@@ -465,7 +465,7 @@
      <thinktime value="2" random="true"/>
 
 <!--login-->
-      <setdynvars sourcetype="random_number" start="1" end="150">
+      <setdynvars sourcetype="random_number" start="1" end="10000">
         <var name="user_num"/>
       </setdynvars>
 
