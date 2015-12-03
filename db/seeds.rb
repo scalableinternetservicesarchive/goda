@@ -4,7 +4,9 @@ User.delete_all
 place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
 place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
-password = User.new.send(:password_digest, '111111')
+pwd = "111111"
+salt = BCrypt::Engine.generate_salt
+password = BCrypt::Engine.hash_secret(pwd, salt)
 drivername = "driver"
 usernames = Array.new(10000){ |i| "user" + (i+1).to_s }
 user  = User.create!(
