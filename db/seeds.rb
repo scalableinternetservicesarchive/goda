@@ -16,12 +16,14 @@ user  = User.create!(
 
 ActiveRecord::Base.transaction do
 start_time = Time.now
-  inserts = []
+  
   for i in 1..10000 do
+    inserts = []
     inserts << "('#{usernames[i]}', '#{usernames[i]}@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
-  end
+  
   sql = "INSERT INTO users (name, email, password_digest, created_at, updated_at) VALUES #{inserts.join(", ")}"
   User.connection.execute sql
+end
 end_time = Time.now
 elapse = (end_time - start_time)
 puts "10000 users in #{elapse.round(4)}s!"
