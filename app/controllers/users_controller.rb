@@ -1,17 +1,14 @@
 class UsersController < ApplicationController
    
     def list
+		@users = User.order(like_num: :desc)	
+        expires_in 3.minutes, :public => true
 
-		@users = User.order(like_num: :desc)
-	
-
-        
     end
  
     def listdriver
-	
 		@users = User.order(driver_like_num: :desc)
-	
+ 	    expires_in 3.minutes, :public => true
     end
     
     def index
@@ -19,7 +16,7 @@ class UsersController < ApplicationController
         @flag = false
         
         if params[:search] == nil
-             @users = User.paginate(page: params[:page], per_page: 20)
+             @users = User.paginate(page: params[:page], per_page: 20) if stale?([User.paginate(page: params[:page], per_page: 20)])
             @flag = true
         else
             @flag = false
@@ -31,7 +28,7 @@ class UsersController < ApplicationController
     def listhitcher
 	
 		@users = User.order(hitcher_like_num: :desc)
-	
+	    expires_in 3.minutes, :public => true
 	
     end
 
