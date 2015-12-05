@@ -77,9 +77,10 @@
   </div>
  </div>
 <% end %>
-
+<% cache [cache_key_for_hitcher_table, @page, @search_param] do %>
 <table>
 <% @hitchers.each do |hitcher| %>
+  <% cache(cache_key_for_hitcher(hitcher)) do %>
   <% if hitcher.user %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -102,8 +103,10 @@
     </td>
   </tr>
  <% end %>
+ <% end %>
 <% end %>
 </table>
+<% end %>
 <% if @flag %>
 <%= will_paginate @drivers %>
 <% end %>
