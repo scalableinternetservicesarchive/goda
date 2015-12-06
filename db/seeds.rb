@@ -8,7 +8,7 @@ pwd = "111111"
 salt = BCrypt::Engine.generate_salt
 password = BCrypt::Engine.hash_secret(pwd, salt)
 drivername = "driver"
-usernames = Array.new(10000){ |i| "user" + (i+1).to_s }
+usernames = Array.new(200000){ |i| "user" + (i+1).to_s }
 user  = User.create!(
   name: "postuser",
         email: "postemail@example.com",
@@ -19,7 +19,7 @@ user  = User.create!(
 ActiveRecord::Base.transaction do
 start_time = Time.now
   
-  for i in 1..10000 do
+  for i in 1..200000 do
     inserts = []
     inserts << "('#{usernames[i]}', '#{usernames[i]}@example.com', '#{password}', '#{Date.today}', '#{Date.today}')"
   
@@ -28,10 +28,10 @@ start_time = Time.now
 end
 end_time = Time.now
 elapse = (end_time - start_time)
-puts "10000 users in #{elapse.round(4)}s!"
+puts "200000 users in #{elapse.round(4)}s!"
 
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..200000 do
     inserts = []
     n = i%4
     inserts << "('#{place1[n]}', '#{place2[n]}', 100, '12', '20', 'aaaaaa', 'BMW', 5, '1234567', '#{Date.today}', '#{Date.today}', #{user.id}, #{user.id}, 5, 0)"
@@ -41,10 +41,10 @@ start_time = Time.now
   end
 end_time = Time.now
 elapse = (end_time - start_time)
-puts "10000 Drivers in #{elapse.round(4)}s!"
+puts "200000 Drivers in #{elapse.round(4)}s!"
 
 start_time = Time.now
-  for i in 1..10000 do
+  for i in 1..200000 do
     inserts = []
     n = i%4
         driver = user.drivers.create!(
