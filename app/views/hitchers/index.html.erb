@@ -63,6 +63,14 @@
     <%= f.text_field :arrival_time, :class => "datepicker" %><class="form-control" placeholder=".col-lg-3">
   </div>
   
+  <div class="col-lg-2">
+    <%= f.label "Page" %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.select 'page', @search.pages_for_select %><class="form-control" placeholder=".col-lg-3">
+  </div>
+
+
 
   <div class="col-lg-1">
     <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
@@ -96,5 +104,8 @@
  <% end %>
 <% end %>
 </table>
+<% if @flag %>
+<%= will_paginate @drivers %>
+<% end %>
 </body>
 </html>

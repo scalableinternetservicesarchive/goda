@@ -10,6 +10,15 @@
   <div class="col-lg-3">
     <%= f.text_field :name %><class="form-control" placeholder=".col-lg-3">
   </div>
+
+  <div class="col-lg-2">
+    <%= f.label "Page" %><class="form-control" placeholder=".col-lg-1">
+  </div>
+  <div class="col-lg-3">
+    <%= f.select 'page', @search.pages_for_select %><class="form-control" placeholder=".col-lg-3">
+  </div>
+
+
  <div class="col-lg-1">
     <%= f.submit :Search%><class="form-control" placeholder=".col-lg-1">
   </div>
@@ -34,6 +43,11 @@
   </tr>
 <% end %>
 </table>
+
+<% if @flag %>
+<%= will_paginate @drivers %>
+<% end %>
+
 <br />
   <% if @search.pages > 1 %>
     <p>There are <%= @search.pages %> pages in total </p>
