@@ -81,9 +81,10 @@
 
  </div>
 <% end %>
-
+<% cache [cache_key_for_driver_table, @page, @search_param] do %>
 <table>
 <% @drivers.each do |driver| %>
+    <% cache(cache_key_for_driver(driver)) do %>
     <% if driver.user %> 
  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
@@ -116,7 +117,9 @@
   </tr>
 <% end %>
 <% end %>
+<% end %>
 </table>
+<% end %>
 <% if @flag %>
 <%= will_paginate @drivers %>
 <% end %>
