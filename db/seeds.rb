@@ -1,6 +1,6 @@
-User.delete_all
 Driver.delete_all
 Hitcher.delete_all
+User.delete_all
 place1 = ["Santa Barbara, CA, United States", "Los Angeles, CA, United States","San Diego, CA, United States","San Francisco, CA, United States"]
 place2 = ["Arizona, United States", "Utah, United States", "Illinois, United States","San Antonio, TX,  United States"]
 username = "user"
@@ -47,26 +47,11 @@ start_time = Time.now
   for i in 1..200000 do
     inserts = []
     n = i%4
-        driver = user.drivers.create!(
-    departure: place1[n],
-        destination: place2[n],
-    price: 100,
-    depart_time: "12:30",
-    estimated_arrival_time: "20:30",
-    description: "aaaaaa",
-    car_type: "BMW",
-    passenger_num: 5,
-    contact_info: "1234567",
-        left: 5
-    )
-        hitcher = user.hitchers.create!(
-            departure: place1[n],
-            destination: place2[n],
-            depart_time: "10:00",
-            arrival_time: "12:30",
-            description: "aaaa",
-            num: 5,   
-            contact_info: "1234567" 
-        )
-    end
-end
+    inserts << "('#{place1[n]}', '#{place2[n]}', '12:30', '20:30', 'aaaaaa', 5, '1234567', '#{Date.today}', '#{Date.today}', #{user.id})"
+
+    sql = "INSERT INTO hitchers (departure, destination, depart_time, arrival_time, description, num, contact_info, created_at, updated_at, user_id) VALUES #{inserts.join(", ")}"
+    Hitcher.connection.execute sql
+  end
+end_time = Time.now
+elapse = (end_time - start_time)
+puts "200000 Hitchers in #{elapse.round(4)}s!"
