@@ -2,10 +2,10 @@ class HitchersController < ApplicationController
   before_action :logged_in_user,  only: [:create, :edit, :destroy ]
   def index
     @flag = false
-    @search = Search.new(Hitcher.includes(:user), params[:search], :per_page => 20) 
+    @search = Search.new(Hitcher, params[:search], :per_page => 20) 
 #    @hitchers = Hitcher.all
     if params[:search] == nil
-        @hitchers = Hitcher.includes(:user).paginate(page: params[:page], per_page: 20)
+        @hitchers = Hitcher.paginate(page: params[:page], per_page: 20)
         @flag = true
     else
         @flag = false

@@ -3,9 +3,9 @@ class DriversController < ApplicationController
   def index
     @flag = false
     #  @drivers = Driver.all
-    @search  = Search.new(Driver.includes(:user), params[:search], :per_page => 20)
+    @search  = Search.new(Driver, params[:search], :per_page => 20)
     if params[:search] == nil    
-        @drivers = Driver.includes(:user).paginate(page: params[:page], per_page: 20)
+        @drivers = Driver.paginate(page: params[:page], per_page: 20)
         @flag = true
     else
       @flag = false
