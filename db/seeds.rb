@@ -55,3 +55,4 @@ start_time = Time.now
 end_time = Time.now
 elapse = (end_time - start_time)
 puts "200000 Hitchers in #{elapse.round(4)}s!"
+end
