@@ -25,9 +25,10 @@
  </div>
 <% end %>
 
-
+<% cache [cache_key_for_user_table, @page, @search_param] do %>
 <table>
 <% @users.each do |user| %>
+   <% cache(cache_key_for_user(user)) do %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
     <td class="list_description">
       <dl>
@@ -42,8 +43,9 @@
 
   </tr>
 <% end %>
+<% end %>
 </table>
-
+<% end %>
 <% if @flag %>
 <%= will_paginate @drivers %>
 <% end %>
