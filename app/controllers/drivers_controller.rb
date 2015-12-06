@@ -5,7 +5,7 @@ class DriversController < ApplicationController
     #  @drivers = Driver.all
     @search  = Search.new(Driver.includes(:user), params[:search], :per_page => 20)
     if params[:search] == nil    
-        @drivers = Driver.includes(:user).paginate(page: params[:page], per_page: 20)
+        @drivers = Driver.includes(:user).paginate(page: params[:page], per_page: 20) if stale?([Driver.includes(:user).paginate(page: params[:page], per_page: 20)])
         @flag = true
     else
       @flag = false
@@ -14,7 +14,7 @@ class DriversController < ApplicationController
   end
 
   def new
-     @driver = Driver.new
+     @driver = Driver.new if stale?([current_user])
      
   end
     
@@ -64,6 +64,7 @@ class DriversController < ApplicationController
      #@drivers = current_user.drivers
      @driver = Driver.find(params[:id])
      @rides = @driver.rides.all
+     expires_in 3.minutes, :public => true
   end
 
   private 

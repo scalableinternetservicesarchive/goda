@@ -5,7 +5,7 @@ class HitchersController < ApplicationController
     @search = Search.new(Hitcher.includes(:user), params[:search], :per_page => 20) 
 #    @hitchers = Hitcher.all
     if params[:search] == nil
-        @hitchers = Hitcher.includes(:user).paginate(page: params[:page], per_page: 20)
+        @hitchers = Hitcher.includes(:user).paginate(page: params[:page], per_page: 20) if stale?([Hitcher.includes(:user).paginate(page: params[:page], per_page: 20)])
         @flag = true
     else
         @flag = false
@@ -13,7 +13,7 @@ class HitchersController < ApplicationController
     end
   end
   def new
-     @hitcher = Hitcher.new
+     @hitcher = Hitcher.new if stale?([current_user])
   end
 
   def create
@@ -47,6 +47,7 @@ class HitchersController < ApplicationController
 
   def show
      @hitcher = Hitcher.find(params[:id])
+     expires_in 3.minutes, :public => true
   end
 
   def destroy
