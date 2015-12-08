@@ -15,7 +15,6 @@ class DriversController < ApplicationController
 
   def new
      @driver = Driver.new if stale?([current_user])
-     
   end
     
     def destroy
