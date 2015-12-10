@@ -1,6 +1,7 @@
-<p class = 'notice'><% if notice %>
-<%= notice %>
-<% end %></p>
+<% if notice %>
+  <p class="notice"><%= notice %></p>
+<% end %>
+
 <h1>User List</h1>
 <%= form_for @search, :url => "/users/index" do |f|%>
  <div class="row">
