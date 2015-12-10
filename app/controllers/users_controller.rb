@@ -2,7 +2,7 @@ class UsersController < ApplicationController
    
     def list
 
-		@users = User.order(like_num: :desc)
+		@users = User.paginate(:page => params[:page], :per_page => 20).order(like_num: :desc)
 	
 
         
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
  
     def listdriver
 	
-		@users = User.order(driver_like_num: :desc)
+		@users = User.paginate(:page => params[:page], :per_page => 20).order(driver_like_num: :desc)
 	
     end
     
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     def listhitcher
 	
-		@users = User.order(hitcher_like_num: :desc)
+		@users = User.paginate(:page => params[:page], :per_page => 20).order(hitcher_like_num: :desc)
 	
 	
     end

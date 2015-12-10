@@ -1,6 +1,8 @@
-<p class = 'notice'><% if notice %>
+<% if notice %>
+<p class = 'notice'>
 <%= notice %>
-<% end %></p>
+</p>
+<% end %>
 <h1>Listing Users With Most Popular Hitchers</h1>
 
 	<table>
@@ -15,4 +17,4 @@
 	 </tr>
 	<% end %>
 	</table>
-
+<%= will_paginate @users %>
